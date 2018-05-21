@@ -4,6 +4,7 @@ var browserify = require('browserify')
 var babelify = require('babelify')
 
 browserify()
+  .exclude(['citation-js'])
   .require('./src/index.js', {expose: '@citation-js/plugin-software-formats'})
   .transform(babelify, {global: true})
   .bundle()

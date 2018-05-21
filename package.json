@@ -1,0 +1,49 @@
+{
+  "name": "@citation-js/plugin-software-formats",
+  "version": "0.1.0",
+  "description": "Collection of software-related input and output formats for Citation.js",
+  "author": "Lars Willighagen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larsgw/citation.js-plugin-software-formats.git"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "-- 1 --": "testing",
+    "lint": "npm run lint:src; npm run lint:test; npm run lint:tools",
+    "lint:src": "standard src/**/*.js",
+    "lint:test": "standard test/**/*.js",
+    "lint:tools": "standard tools/**/*.js",
+    "test": "mocha -r @babel/register test/*.spec.js",
+    "-- 2 --": "building",
+    "compile": "babel src -d lib --copyfiles",
+    "dist": "node tools/build.js",
+    "dist:minify": "uglifyjs --config-file .uglify.json build/citation-software.js -o build/citation-software.min.js",
+    "-- 3 --": "hooks",
+    "prepare": "npm run compile && npm run dist && npm run dist:minify"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0-beta.47",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.47",
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/register": "^7.0.0-beta.47",
+    "babel-eslint": "^8.2.3",
+    "babelify": "github:larsgw/babelify#patch-1",
+    "browserify": "^16.2.2",
+    "eslint-plugin-vuln-regex-detector": "^1.0.4",
+    "mocha": "^5.1.1",
+    "standard": "^11.0.1",
+    "uglify-js": "^3.3.25"
+  },
+  "peerDependencies": {
+    "citation-js": "0.4.0-3"
+  }
+}

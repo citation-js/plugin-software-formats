@@ -364,6 +364,7 @@ export function parse (input) {
   let output = mainTranslator.convertToTarget(input)
   let refs = (input.references || []).map(refTranslator.convertToTarget)
 
+  output.type = TYPES_TO_TARGET.software
   output._cff_mainReference = true
 
   return [output, ...refs]

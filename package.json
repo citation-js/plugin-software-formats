@@ -1,6 +1,6 @@
 {
   "name": "@citation-js/plugin-software-formats",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Collection of software-related input and output formats for Citation.js",
   "author": "Lars Willighagen",
   "license": "MIT",

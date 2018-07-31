@@ -27,10 +27,12 @@ export const outputTests = [
   {
     name: 'simple',
     input: [{
+      type: 'book',
       author: [{family: 'Druskat', given: 'Stephan'}],
       title: 'My Research Tool',
       DOI: '10.5281/zenodo.1234',
-      issued: {'date-parts': [[2017, 12, 18]]}
+      issued: {'date-parts': [[2017, 12, 18]]},
+      version: '1.0.4'
     }],
     output: `cff-version: 1.0.3
 authors:
@@ -40,7 +42,8 @@ authors:
 date-released: 2017-12-18T00:00:00.000Z
 doi: 10.5281/zenodo.1234
 title: 'My Research Tool'
+version: 1.0.4
 references: []
-version: '1.0.4'`
+`
   }
 ]

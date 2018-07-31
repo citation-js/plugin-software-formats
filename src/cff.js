@@ -133,7 +133,7 @@ const PROP_CONVERTERS = {
   },
   date: {
     toTarget (date) {
-      return parseDate(date)
+      return parseDate(date.toISOString())
     },
     toSource (date) {
       if (date.raw) {

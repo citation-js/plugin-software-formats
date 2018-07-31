@@ -2,7 +2,9 @@ import Cite from 'citation-js'
 import yaml from 'yamljs'
 
 import * as cff from './cff'
+import * as gh from './gh'
 
+// YAML
 Cite.plugins.add('@else', {
   input: {
     '@else/yaml': {
@@ -19,6 +21,7 @@ Cite.plugins.add('@else', {
   }
 })
 
+// Citation File Format
 Cite.plugins.add('@cff', {
   input: {
     '@cff/object': {
@@ -40,6 +43,40 @@ Cite.plugins.add('@cff', {
       } else {
         return yaml.stringify(output, Infinity, 2)
       }
+    }
+  }
+})
+
+// GitHub
+Cite.plugins.add('@github', {
+  input: {
+    '@github/url': {
+      parseType: {
+        dataType: 'String',
+        predicate: /^https?:\/\/github.com\/[^/]+\//,
+        extends: '@else/url'
+      },
+      parse: gh.url
+    },
+    '@github/api': {
+      parseType: {
+        dataType: 'String',
+        predicate: /^https?:\/\/api.github.com\/repos\/[^/]+\//,
+        extends: '@else/url'
+      },
+      parseAsync: gh.api
+    },
+    '@github/object': {
+      parseType: {
+        dataType: 'SimpleObject',
+        propertyConstraint: {
+          props: 'url',
+          value (url) {
+            return /^https?:\/\/api.github.com\/repos\/[^/]+\//.test(url)
+          }
+        }
+      },
+      parseAsync: gh.json
     }
   }
 })

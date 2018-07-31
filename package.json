@@ -27,23 +27,23 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-beta.47",
+    "@babel/polyfill": "^7.0.0-beta.55",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.47",
-    "@babel/core": "^7.0.0-beta.47",
-    "@babel/preset-env": "^7.0.0-beta.47",
-    "@babel/register": "^7.0.0-beta.47",
-    "babel-eslint": "^8.2.3",
+    "@babel/cli": "^7.0.0-beta.55",
+    "@babel/core": "^7.0.0-beta.55",
+    "@babel/preset-env": "^7.0.0-beta.55",
+    "@babel/register": "^7.0.0-beta.55",
+    "babel-eslint": "^8.2.6",
     "babelify": "github:larsgw/babelify#patch-1",
     "browserify": "^16.2.2",
     "eslint-plugin-vuln-regex-detector": "^1.0.4",
-    "mocha": "^5.1.1",
+    "mocha": "^5.2.0",
     "standard": "^11.0.1",
-    "uglify-js": "^3.3.25"
+    "uglify-js": "^3.4.6"
   },
   "peerDependencies": {
-    "citation-js": "0.4.0-3"
+    "citation-js": "0.4.0-9"
   }
 }

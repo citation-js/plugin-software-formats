@@ -9,6 +9,13 @@
     "url": "git+https://github.com/larsgw/citation.js-plugin-software-formats.git"
   },
   "main": "lib/index.js",
+  "jsdelivr": "build/citation-software.min.js",
+  "unpkg": "build/citation-software.min.js",
+  "files": [
+    "/lib",
+    "/build/citation-software.js",
+    "/build/citation-software.min.js"
+  ],
   "scripts": {
     "-- 1 --": "testing",
     "lint": "npm run lint:src; npm run lint:test; npm run lint:tools",
@@ -21,7 +28,8 @@
     "dist": "node tools/build.js",
     "dist:minify": "uglifyjs --config-file .uglify.json build/citation-software.js -o build/citation-software.min.js",
     "-- 3 --": "hooks",
-    "prepare": "npm run compile && npm run dist && npm run dist:minify"
+    "preversion": "npm run lint && npm run test",
+    "prepublishOnly": "npm run compile && npm run dist && npm run dist:minify"
   },
   "standard": {
     "parser": "babel-eslint"

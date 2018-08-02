@@ -3,8 +3,8 @@ export const apiTests = [
     name: 'simple',
     input: 'https://api.github.com/repos/larsgw/citation.js',
     output: [{
-      URL: "https://github.com/larsgw/citation.js",
-      abstract: "Citation.js converts formats like BibTeX, Wikidata JSON and ContentMine JSON to CSL-JSON to convert to other formats like APA, Vancouver and back to BibTeX.",
+      URL: 'https://github.com/larsgw/citation.js',
+      abstract: 'Citation.js converts formats like BibTeX, Wikidata JSON and ContentMine JSON to CSL-JSON to convert to other formats like APA, Vancouver and back to BibTeX.',
       author: [
         {family: 'Willighagen', given: 'Lars'},
         {family: 'Willighagen', given: 'Egon'},
@@ -24,8 +24,8 @@ export const urlTests = [
     name: 'simple',
     input: 'https://github.com/larsgw/citation.js',
     output: [{
-      URL: "https://github.com/larsgw/citation.js",
-      abstract: "Citation.js converts formats like BibTeX, Wikidata JSON and ContentMine JSON to CSL-JSON to convert to other formats like APA, Vancouver and back to BibTeX.",
+      URL: 'https://github.com/larsgw/citation.js',
+      abstract: 'Citation.js converts formats like BibTeX, Wikidata JSON and ContentMine JSON to CSL-JSON to convert to other formats like APA, Vancouver and back to BibTeX.',
       author: [
         {family: 'Willighagen', given: 'Lars'},
         {family: 'Willighagen', given: 'Egon'},

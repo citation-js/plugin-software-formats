@@ -12,7 +12,7 @@ Cite.plugins.add('@else', {
         dataType: 'String',
         tokenList: {
           split: /\n(\s{2})*(-\s)?/,
-          token: /^[\w\-]*: /,
+          token: /^[\w-]*: /,
           every: false
         }
       },
@@ -49,6 +49,7 @@ Cite.plugins.add('@cff', {
 
 // GitHub
 Cite.plugins.add('@github', {
+  config: gh.config,
   input: {
     '@github/url': {
       parseType: {

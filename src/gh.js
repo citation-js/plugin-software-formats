@@ -1,5 +1,3 @@
-import {Translator} from './translator'
-
 import Cite from 'citation-js'
 
 /**
@@ -31,6 +29,10 @@ async function parseValue (prop, value) {
   }
 }
 
+export const config = {
+  apiToken: null
+}
+
 export async function json (input) {
   let output = {
     type: 'book'
@@ -46,12 +48,14 @@ export async function json (input) {
 }
 
 export async function api (input) {
-  let output = await Cite.util.fetchFileAsync(input, {
-    headers: {
-      Accept: 'application/vnd.github.v3+json',
-      'User-Agent': 'citation.js.org'
-    }
-  })
+  let headers = {
+    Accept: 'application/vnd.github.v3+json',
+    'User-Agent': 'citation.js.org'
+  }
+
+  if (config.apiToken) { headers.Authorization = `token ${config.apiToken}` }
+
+  let output = await Cite.util.fetchFileAsync(input, {headers})
   return JSON.parse(output)
 }
 

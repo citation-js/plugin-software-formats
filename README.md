@@ -54,7 +54,17 @@ doi: 10.5281/zenodo.1234
 date-released: 2017-12-18
 ```
 
-[Source](https://github.com/citation-file-format/citation-file-format#example)
+Example from [here](https://github.com/citation-file-format/citation-file-format#example)
+
+#### GitHub
+
+This plugin can retrieve bibliographical data from the GitHub API. Note, however, that said API practices rate-limiting, namely 60 unauthorized requests per hours. Also, because the API is limited, a single source can take ~10 API requests. With authorized requests, you can make up to 5000 requests per hour. To let Citation.js make authorized requests, you can set an OAuth token. To get an OAuth token from your GitHub account, see [this guide](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). You don't need to select any additional scopes. Citation.js won't do anything else with this OAuth token.
+
+```js
+Cite.plugins.config.get('@github').apiToken = OAUTH_TOKEN
+
+Cite('https://github.com/citation-js/plugin-software-formats')
+```
 
 ### Output
 

@@ -33,6 +33,8 @@ Formats and other features added by this plugin.
 
 ### Input
 
+The CSL standard has no `type` for software, so ([by convention](https://github.com/citation-style-language/zotero-bits/issues/69)) `book` is used instead.
+
 #### YAML
 
 This plugin adds support for YAML files. This is done with the [`yamljs` package](https://www.npmjs.com/package/yamljs).
@@ -64,6 +66,26 @@ This plugin can retrieve bibliographical data from the GitHub API. Note, however
 Cite.plugins.config.get('@github').apiToken = OAUTH_TOKEN
 
 Cite('https://github.com/citation-js/plugin-software-formats')
+```
+
+#### npm
+
+This plugin can retrieve bibliographical data from the main npm registry. Note that the `author` property is limited to a single author, since the `maintainers` data only has usernames and there is no public API to retrieve the associated full name.
+
+```js
+Cite('https://www.npmjs.com/package/@citation-js/plugin-software-formats')
+
+{
+  URL: 'https://citation.js.org/',
+  abstract: 'Citation.js converts formats like BibTeX, Wikidata JSON and ContentMine JSON to CSL-JSON to convert to other formats like APA, Vancouver and back to BibTeX.',
+  author: [
+    {family: 'Willighagen', given: 'Lars'}
+  ],
+  issued: {'date-parts': [[2018, 12, 27]]},
+  title: 'citation-js',
+  version: '0.4.0-11',
+  type: 'book'
+}
 ```
 
 ### Output

@@ -3,6 +3,7 @@ import yaml from 'yamljs'
 
 import * as cff from './cff'
 import * as gh from './gh'
+import * as npm from './npm'
 
 // YAML
 plugins.add('@else', {
@@ -78,6 +79,46 @@ plugins.add('@github', {
         }
       },
       parseAsync: gh.json
+    }
+  }
+})
+
+// npm
+plugins.add('npm', {
+  input: {
+    '@npm/url': {
+      parseType: {
+        dataType: 'String',
+        predicate: /^https?:\/\/(www\.)?(npmjs\.com|npmjs\.org|npm\.im)\/(package)?/,
+        extends: '@else/url'
+      },
+      parse: npm.url
+    },
+    '@npm/api': {
+      parseType: {
+        dataType: 'String',
+        predicate: /^https?:\/\/registry.npmjs.org\//,
+        extends: '@else/url'
+      },
+      parseAsync: npm.api
+    },
+    '@npm/object': {
+      parseType: {
+        dataType: 'SimpleObject',
+        propertyConstraint: {
+          props: 'versions',
+          value (versions) {
+            for (let version in versions) {
+              if ('_npmUser' in versions[version] ||
+                  '_npmVersion' in versions[version]) {
+                return true
+              }
+            }
+            return false
+          }
+        }
+      },
+      parseAsync: npm.json
     }
   }
 })

@@ -1,4 +1,4 @@
-import {plugins} from '@citation-js/core'
+import { plugins } from '@citation-js/core'
 import yaml from 'yamljs'
 
 import * as cff from './cff'

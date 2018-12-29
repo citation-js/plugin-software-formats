@@ -1,4 +1,4 @@
-import {Translator} from './translator'
+import { Translator } from './translator'
 
 // FIXME import properly
 import parseDate from 'citation-js/lib/parse/date'
@@ -109,11 +109,11 @@ const TYPES_TO_SOURCE = {
 }
 
 const ENTITY_PROPS = [
-  {source: 'family-names', target: 'family'},
-  {source: 'given-names', target: 'given'},
-  {source: 'name-particle', target: 'non-dropping-particle'},
-  {source: 'name-suffix', target: 'suffix'},
-  {source: 'name', target: 'literal'}
+  { source: 'family-names', target: 'family' },
+  { source: 'given-names', target: 'given' },
+  { source: 'name-particle', target: 'non-dropping-particle' },
+  { source: 'name-suffix', target: 'suffix' },
+  { source: 'name', target: 'literal' }
 ]
 
 const entity = new Translator(ENTITY_PROPS)
@@ -128,8 +128,8 @@ const PROP_CONVERTERS = {
     }
   },
   name: {
-    toTarget ({name}) { return name },
-    toSource (name) { return {name} }
+    toTarget ({ name }) { return name },
+    toSource (name) { return { name } }
   },
   date: {
     toTarget (date) {
@@ -148,15 +148,15 @@ const PROP_CONVERTERS = {
 const MAIN_PROPS = [
   'abstract',
 
-  {source: 'authors', target: 'author', convert: PROP_CONVERTERS.names},
+  { source: 'authors', target: 'author', convert: PROP_CONVERTERS.names },
 
   // TODO cff: commit
 
   // TODO cff: contact
 
-  {source: 'date-released', target: 'issued', convert: PROP_CONVERTERS.date},
+  { source: 'date-released', target: 'issued', convert: PROP_CONVERTERS.date },
 
-  {source: 'doi', target: 'DOI'},
+  { source: 'doi', target: 'DOI' },
 
   'keywords',
 
@@ -171,7 +171,7 @@ const MAIN_PROPS = [
 
   'title',
 
-  {source: 'url', target: 'URL'},
+  { source: 'url', target: 'URL' },
 
   'version'
 ]
@@ -181,8 +181,8 @@ const REF_PROPS = [
   ...MAIN_PROPS,
 
   // ABBREVIATION
-  {source: 'abbreviation', target: 'title-short'},
-  {source: 'abbreviation', target: 'shortTitle'},
+  { source: 'abbreviation', target: 'title-short' },
+  { source: 'abbreviation', target: 'shortTitle' },
 
   // COLLECTIONS
   // TODO cff: collection-doi
@@ -193,11 +193,11 @@ const REF_PROPS = [
   // TODO cff: issue-title
 
   // COMMUNICATION
-  {source: 'recipients', target: 'recipient', convert: PROP_CONVERTERS.names},
+  { source: 'recipients', target: 'recipient', convert: PROP_CONVERTERS.names },
   // TODO cff: senders NOTE name/entity list
 
   // CONFERENCE
-  {source: 'conference', target: 'event', convert: PROP_CONVERTERS.name},
+  { source: 'conference', target: 'event', convert: PROP_CONVERTERS.name },
 
   // COPYRIGHT
   // TODO cff: copyright
@@ -208,26 +208,26 @@ const REF_PROPS = [
   // TODO cff: database-provider NOTE entity
 
   // DATE
-  {source: 'date-accessed', target: 'accessed', convert: PROP_CONVERTERS.date},
+  { source: 'date-accessed', target: 'accessed', convert: PROP_CONVERTERS.date },
 
-  {source: 'date-downloaded',
+  { source: 'date-downloaded',
     target: 'accessed',
     convert: PROP_CONVERTERS.date,
-    when: {source: {'date-accessed': false}, target: false}},
+    when: { source: { 'date-accessed': false }, target: false } },
 
-  {source: 'date-published',
+  { source: 'date-published',
     target: 'issued',
     convert: PROP_CONVERTERS.date,
-    when: {source: {'date-released': false}, target: false}},
+    when: { source: { 'date-released': false }, target: false } },
 
   {
     source: ['year', 'month'],
     target: 'issued',
-    when: { source: {'date-published': false, 'date-released': false, year: true} },
+    when: { source: { 'date-published': false, 'date-released': false, year: true } },
     convert: {
       toTarget (year, month) {
         let date = month ? [year, month] : [year]
-        return {'date-parts': [date]}
+        return { 'date-parts': [date] }
       },
       toSource (issued) {
         let [year, month] = issued['date-parts'][0]
@@ -236,12 +236,12 @@ const REF_PROPS = [
     }
   },
 
-  {source: 'year-original',
+  { source: 'year-original',
     target: 'original-date',
     convert: {
-      toTarget (year) { return {'date-parts': [[year]]} },
+      toTarget (year) { return { 'date-parts': [[year]] } },
       toSource (date) { return date['date-parts'][0][0] }
-    }},
+    } },
 
   // DEPARTMENT
   // TODO cff: department
@@ -250,8 +250,8 @@ const REF_PROPS = [
   'edition',
 
   // EDITORS
-  {source: 'editors', target: 'editor', convert: PROP_CONVERTERS.names},
-  {source: 'editors-series', target: 'collection-editor', convert: PROP_CONVERTERS.names},
+  { source: 'editors', target: 'editor', convert: PROP_CONVERTERS.names },
+  { source: 'editors-series', target: 'collection-editor', convert: PROP_CONVERTERS.names },
 
   // ENTRY
   // TODO cff: entry
@@ -261,10 +261,10 @@ const REF_PROPS = [
   'medium',
 
   // IDENTIFIERS
-  {source: 'isbn', target: 'ISBN'},
-  {source: 'issn', target: 'ISSN'},
+  { source: 'isbn', target: 'ISBN' },
+  { source: 'issn', target: 'ISSN' },
   // TODO cff: nihmsid
-  {source: 'pmcid', target: 'PMCID'},
+  { source: 'pmcid', target: 'PMCID' },
 
   // INSTITUTION
   // TODO cff: institution NOTE entity
@@ -283,7 +283,7 @@ const REF_PROPS = [
     when: {
       target: true,
       // NOTE: possible values not as strict in csl, so test (crudely) if the value is ok first
-      source: {language (code) { return /[a-z]{2,3}/.test(code) }}
+      source: { language (code) { return /[a-z]{2,3}/.test(code) } }
     },
     convert: {
       // NOTE: CSL can only hold one language
@@ -301,7 +301,7 @@ const REF_PROPS = [
   // TODO cff: loc-end
 
   // NOTES
-  {source: 'notes', target: 'note'},
+  { source: 'notes', target: 'note' },
   // TODO cff: scope *
 
   // NUMBER
@@ -311,23 +311,23 @@ const REF_PROPS = [
   // TODO cff: patent-states
 
   // PUBLISHER
-  {source: 'publisher', target: 'publisher', convert: PROP_CONVERTERS.name},
+  { source: 'publisher', target: 'publisher', convert: PROP_CONVERTERS.name },
 
   // SECTION
   'section',
 
   // STATUS
-  {source: 'status',
+  { source: 'status',
     target: 'status',
     when: {
       source: true,
       // NOTE: possible values not as strict in csl, so test if the value is ok first
-      target: {status: ['in-preparation', 'abstract', 'submitted', 'in-press', 'advance-online', 'preprint']}
-    }},
+      target: { status: ['in-preparation', 'abstract', 'submitted', 'in-press', 'advance-online', 'preprint'] }
+    } },
 
   // PAGES
-  {source: 'start', target: 'page-first'},
-  {source: ['start', 'end'],
+  { source: 'start', target: 'page-first' },
+  { source: ['start', 'end'],
     target: 'page',
     convert: {
       toTarget (start, end) {
@@ -337,20 +337,20 @@ const REF_PROPS = [
         let [start, end] = page.split('-')
         return [start, end]
       }
-    }},
-  {source: 'pages', target: 'number-of-pages'},
+    } },
+  { source: 'pages', target: 'number-of-pages' },
 
   // TRANSLATORS
-  {source: 'translators', target: 'translator', convert: PROP_CONVERTERS.names},
+  { source: 'translators', target: 'translator', convert: PROP_CONVERTERS.names },
 
   // TYPES
   // TODO cff: thesis-type
-  {source: 'type',
+  { source: 'type',
     target: 'type',
     convert: {
       toSource (type) { return TYPES_TO_SOURCE[type] || 'generic' },
       toTarget (type) { return TYPES_TO_TARGET[type] || 'book' }
-    }},
+    } },
 
   // VOLUMES
   'volume',
@@ -370,7 +370,7 @@ export function parse (input) {
   return [output, ...refs]
 }
 
-export function format (input, {main} = {}) {
+export function format (input, { main } = {}) {
   // Bugged in 0.4.0-4, due to the CSL normaliser erroneously removing props
   // starting with '_', because it checks if the value starts with '_' instead.
   let mainIndex = input.findIndex(entry => main ? entry.id === main : entry._cff_mainReference)
@@ -379,7 +379,7 @@ export function format (input, {main} = {}) {
   let mainRef = mainTranslator.convertToSource(input.splice(mainIndex, 1)[0] || {})
   let references = input.map(refTranslator.convertToSource)
 
-  return {'cff-version': CFF_VERSION, ...mainRef, references}
+  return { 'cff-version': CFF_VERSION, ...mainRef, references }
 }
 
 export const CFF_VERSION = '1.0.3'

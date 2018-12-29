@@ -1,6 +1,6 @@
-import {util} from '@citation-js/core'
-import {parse as parseDate} from '@citation-js/date'
-import {parse as parseName} from '@citation-js/name'
+import { util } from '@citation-js/core'
+import { parse as parseDate } from '@citation-js/date'
+import { parse as parseName } from '@citation-js/name'
 
 /**
  * Format: npm API results
@@ -33,7 +33,7 @@ export async function json (input) {
       output[propMaps[prop]] = await parseValue(prop, input[prop])
     }
 
-    const {latest} = input['dist-tags']
+    const { latest } = input['dist-tags']
     output.version = latest
     output.issued = parseDate(input.time[latest])
   }

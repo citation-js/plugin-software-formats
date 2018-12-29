@@ -72,7 +72,7 @@ function parsePropStatement (prop, toSource) {
   inputProp = [].concat(inputProp).filter(Boolean)
   outputProp = [].concat(outputProp).filter(Boolean)
 
-  return {inputProp, outputProp, convert, condition}
+  return { inputProp, outputProp, convert, condition }
 }
 
 function createConverter (props, toSource) {
@@ -82,7 +82,7 @@ function createConverter (props, toSource) {
   return function converter (input) {
     let output = {}
 
-    for (let {inputProp, outputProp, convert, condition} of props) {
+    for (let { inputProp, outputProp, convert, condition } of props) {
       // Skip when no output will be assigned
       if (outputProp.length === 0) {
         continue

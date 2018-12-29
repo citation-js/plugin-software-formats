@@ -6,9 +6,9 @@ export const apiTests = [
       URL: 'https://citation.js.org/',
       abstract: 'Citation.js converts formats like BibTeX, Wikidata JSON and ContentMine JSON to CSL-JSON to convert to other formats like APA, Vancouver and back to BibTeX.',
       author: [
-        {family: 'Willighagen', given: 'Lars'}
+        { family: 'Willighagen', given: 'Lars' }
       ],
-      issued: {'date-parts': [[2018, 12, 27]]},
+      issued: { 'date-parts': [[2018, 12, 27]] },
       title: 'citation-js',
       version: '0.4.0-11',
       type: 'book'
@@ -24,9 +24,9 @@ export const urlTests = [
       URL: 'https://citation.js.org/',
       abstract: 'Citation.js converts formats like BibTeX, Wikidata JSON and ContentMine JSON to CSL-JSON to convert to other formats like APA, Vancouver and back to BibTeX.',
       author: [
-        {family: 'Willighagen', given: 'Lars'}
+        { family: 'Willighagen', given: 'Lars' }
       ],
-      issued: {'date-parts': [[2018, 12, 27]]},
+      issued: { 'date-parts': [[2018, 12, 27]] },
       title: 'citation-js',
       version: '0.4.0-11',
       type: 'book'

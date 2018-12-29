@@ -22,7 +22,7 @@
     "lint:src": "standard src/**/*.js",
     "lint:test": "standard test/**/*.js",
     "lint:tools": "standard tools/**/*.js",
-    "test": "mocha -r @babel/register test/*.spec.js",
+    "test": "mocha -r @babel/polyfill -r @babel/register test/*.spec.js",
     "-- 2 --": "building",
     "compile": "babel src -d lib --copyfiles",
     "dist": "node tools/build.js",
@@ -35,23 +35,26 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-beta.55",
+    "@citation-js/date": "^0.4.2",
+    "@citation-js/name": "^0.4.2",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.55",
-    "@babel/core": "^7.0.0-beta.55",
-    "@babel/preset-env": "^7.0.0-beta.55",
-    "@babel/register": "^7.0.0-beta.55",
-    "babel-eslint": "^8.2.6",
-    "babelify": "github:larsgw/babelify#patch-1",
-    "browserify": "^16.2.2",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/register": "^7.0.0",
+    "@citation-js/core": "^0.4.0-rc.1",
+    "babel-eslint": "^10.0.1",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
     "eslint-plugin-vuln-regex-detector": "^1.0.4",
     "mocha": "^5.2.0",
-    "standard": "^11.0.1",
-    "uglify-js": "^3.4.6"
+    "standard": "^12.0.1",
+    "uglify-js": "^3.4.9"
   },
   "peerDependencies": {
-    "citation-js": "0.4.0-9"
+    "@citation-js/core": "^0.4.0-rc.1"
   }
 }

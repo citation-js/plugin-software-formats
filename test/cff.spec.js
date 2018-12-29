@@ -3,14 +3,14 @@
 import '../src/'
 
 import assert from 'assert'
-import Cite from 'citation-js'
+import {Cite, plugins} from '@citation-js/core'
 import {inputTests, outputTests} from './cff'
 
 describe('cff', function () {
   describe('input', function () {
     for (let {name, input, output} of inputTests) {
       it(name, function () {
-        assert.deepStrictEqual(Cite.input(input, {generateGraph: false}), output)
+        assert.deepStrictEqual(plugins.input.chain(input, {generateGraph: false}), output)
       })
     }
   })

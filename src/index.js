@@ -1,11 +1,11 @@
-import Cite from 'citation-js'
+import {plugins} from '@citation-js/core'
 import yaml from 'yamljs'
 
 import * as cff from './cff'
 import * as gh from './gh'
 
 // YAML
-Cite.plugins.add('@else', {
+plugins.add('@else', {
   input: {
     '@else/yaml': {
       parseType: {
@@ -22,7 +22,7 @@ Cite.plugins.add('@else', {
 })
 
 // Citation File Format
-Cite.plugins.add('@cff', {
+plugins.add('@cff', {
   input: {
     '@cff/object': {
       parseType: {
@@ -48,7 +48,7 @@ Cite.plugins.add('@cff', {
 })
 
 // GitHub
-Cite.plugins.add('@github', {
+plugins.add('@github', {
   config: gh.config,
   input: {
     '@github/url': {

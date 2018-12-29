@@ -1,4 +1,6 @@
-import Cite from 'citation-js'
+import {util} from '@citation-js/core'
+import {parse as parseDate} from '@citation-js/date'
+import {parse as parseName} from '@citation-js/name'
 
 /**
  * Format: GitHub API results (GH API) version 3
@@ -19,10 +21,10 @@ async function parseValue (prop, value) {
     case 'contributors_url':
       let contributors = await api(value)
       contributors = await Promise.all(contributors.map(({url}) => api(url)))
-      return contributors.map(({name}) => name).map(Cite.parse.name)
+      return contributors.map(({name}) => name).map(parseName)
 
     case 'pushed_at':
-      return Cite.parse.date(value)
+      return parseDate(value)
 
     default:
       return value
@@ -55,7 +57,7 @@ export async function api (input) {
 
   if (config.apiToken) { headers.Authorization = `token ${config.apiToken}` }
 
-  let output = await Cite.util.fetchFileAsync(input, {headers})
+  let output = await util.fetchFileAsync(input, {headers})
   return JSON.parse(output)
 }
 

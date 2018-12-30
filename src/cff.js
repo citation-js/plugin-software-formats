@@ -1,7 +1,5 @@
 import { Translator } from './translator'
-
-// FIXME import properly
-import parseDate from 'citation-js/lib/parse/date'
+import { parse as parseDate } from '@citation-js/date'
 
 /**
  * Format: Citation File Format (CFF) version 1.0.3

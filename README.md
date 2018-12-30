@@ -8,7 +8,18 @@ npm install @citation-js/plugin-software-formats
 
 ### Browser
 
-Make a build with `@citation-js/plugin-software-formats` on the [build tool](https://juniper-coat.glitch.me).
+Make a build with `@citation-js/plugin-software-formats` on the [build tool](https://juniper-coat.glitch.me)!
+
+Alternatively, include this script after any bundle with `@citation-js/core`:
+
+```html
+<!-- Regular -->
+<script src="https://unpkg.com/@citation-js/plugin-software-formats@0.1.0/build/citation-software.js"></script>
+<!-- OR Minified -->
+<script src="https://unpkg.com/@citation-js/plugin-software-formats@0.1.0/build/citation-software.min.js"></script>
+```
+
+Replace `0.1.0` with the version you want or remove `@0.1.0` to get the latest version.
 
 ## Use
 

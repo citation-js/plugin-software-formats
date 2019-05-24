@@ -21,7 +21,7 @@ async function parseValue (prop, value) {
     case 'contributors_url':
       let contributors = await api(value)
       contributors = await Promise.all(contributors.map(({ url }) => api(url)))
-      return contributors.map(({ name }) => name).map(parseName)
+      return contributors.map(({ name, login }) => name ? parseName(name) : { literal: login })
 
     case 'pushed_at':
       return parseDate(value)

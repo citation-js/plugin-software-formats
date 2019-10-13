@@ -1,4 +1,4 @@
-import { Translator } from './translator'
+import { util } from '@citation-js/core'
 import { parse as parseDate } from '@citation-js/date'
 
 /**
@@ -114,7 +114,7 @@ const ENTITY_PROPS = [
   { source: 'name', target: 'literal' }
 ]
 
-const entity = new Translator(ENTITY_PROPS)
+const entity = new util.Translator(ENTITY_PROPS)
 
 const PROP_CONVERTERS = {
   names: {
@@ -367,8 +367,8 @@ const REF_PROPS = [
   'number-of-volumes'
 ]
 
-const mainTranslator = new Translator(MAIN_PROPS)
-const refTranslator = new Translator(REF_PROPS)
+const mainTranslator = new util.Translator(MAIN_PROPS)
+const refTranslator = new util.Translator(REF_PROPS)
 
 export function parse (input) {
   const output = mainTranslator.convertToTarget(input)

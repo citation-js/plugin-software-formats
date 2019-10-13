@@ -13,15 +13,9 @@
     "/lib"
   ],
   "scripts": {
-    "-- 1 --": "testing",
-    "lint": "npm run lint:src; npm run lint:test; npm run lint:tools",
-    "lint:src": "standard src/**/*.js",
-    "lint:test": "standard test/**/*.js",
-    "lint:tools": "standard tools/**/*.js",
+    "lint": "standard",
     "test": "mocha -r @babel/polyfill -r @babel/register test/*.spec.js",
-    "-- 2 --": "building",
-    "compile": "babel src -d lib --copyfiles",
-    "-- 3 --": "hooks",
+    "compile": "babel src -d lib --copy-files",
     "preversion": "npm run lint && npm run test",
     "prepublishOnly": "npm run compile"
   },

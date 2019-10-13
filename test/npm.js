@@ -8,9 +8,9 @@ export const apiTests = [
       author: [
         { family: 'Willighagen', given: 'Lars' }
       ],
-      issued: { 'date-parts': [[2019, 6, 13]] },
+      issued: { 'date-parts': [[2019, 10, 8]] },
       title: 'citation-js',
-      version: '0.4.5',
+      version: '0.5.0-alpha.3',
       type: 'book'
     }]
   }

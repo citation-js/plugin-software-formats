@@ -137,7 +137,7 @@ const PROP_CONVERTERS = {
       if (date.raw) {
         return date.raw
       }
-      let [year, month, day] = date['date-parts'][0]
+      const [year, month, day] = date['date-parts'][0]
       return new Date(Date.UTC(year, month - 1, day))
     }
   }
@@ -208,15 +208,19 @@ const REF_PROPS = [
   // DATE
   { source: 'date-accessed', target: 'accessed', convert: PROP_CONVERTERS.date },
 
-  { source: 'date-downloaded',
+  {
+    source: 'date-downloaded',
     target: 'accessed',
     convert: PROP_CONVERTERS.date,
-    when: { source: { 'date-accessed': false }, target: false } },
+    when: { source: { 'date-accessed': false }, target: false }
+  },
 
-  { source: 'date-published',
+  {
+    source: 'date-published',
     target: 'issued',
     convert: PROP_CONVERTERS.date,
-    when: { source: { 'date-released': false }, target: false } },
+    when: { source: { 'date-released': false }, target: false }
+  },
 
   {
     source: ['year', 'month'],
@@ -224,22 +228,24 @@ const REF_PROPS = [
     when: { source: { 'date-published': false, 'date-released': false, year: true } },
     convert: {
       toTarget (year, month) {
-        let date = month ? [year, month] : [year]
+        const date = month ? [year, month] : [year]
         return { 'date-parts': [date] }
       },
       toSource (issued) {
-        let [year, month] = issued['date-parts'][0]
+        const [year, month] = issued['date-parts'][0]
         return [year, month]
       }
     }
   },
 
-  { source: 'year-original',
+  {
+    source: 'year-original',
     target: 'original-date',
     convert: {
       toTarget (year) { return { 'date-parts': [[year]] } },
       toSource (date) { return date['date-parts'][0][0] }
-    } },
+    }
+  },
 
   // DEPARTMENT
   // TODO cff: department
@@ -315,27 +321,31 @@ const REF_PROPS = [
   'section',
 
   // STATUS
-  { source: 'status',
+  {
+    source: 'status',
     target: 'status',
     when: {
       source: true,
       // NOTE: possible values not as strict in csl, so test if the value is ok first
       target: { status: ['in-preparation', 'abstract', 'submitted', 'in-press', 'advance-online', 'preprint'] }
-    } },
+    }
+  },
 
   // PAGES
   { source: 'start', target: 'page-first' },
-  { source: ['start', 'end'],
+  {
+    source: ['start', 'end'],
     target: 'page',
     convert: {
       toTarget (start, end) {
         return `${start}-${end}`
       },
       toSource (page) {
-        let [start, end] = page.split('-')
+        const [start, end] = page.split('-')
         return [start, end]
       }
-    } },
+    }
+  },
   { source: 'pages', target: 'number-of-pages' },
 
   // TRANSLATORS
@@ -343,12 +353,14 @@ const REF_PROPS = [
 
   // TYPES
   // TODO cff: thesis-type
-  { source: 'type',
+  {
+    source: 'type',
     target: 'type',
     convert: {
       toSource (type) { return TYPES_TO_SOURCE[type] || 'generic' },
       toTarget (type) { return TYPES_TO_TARGET[type] || 'book' }
-    } },
+    }
+  },
 
   // VOLUMES
   'volume',
@@ -359,8 +371,8 @@ const mainTranslator = new Translator(MAIN_PROPS)
 const refTranslator = new Translator(REF_PROPS)
 
 export function parse (input) {
-  let output = mainTranslator.convertToTarget(input)
-  let refs = (input.references || []).map(refTranslator.convertToTarget)
+  const output = mainTranslator.convertToTarget(input)
+  const refs = (input.references || []).map(refTranslator.convertToTarget)
 
   output.type = TYPES_TO_TARGET.software
   output._cff_mainReference = true
@@ -374,8 +386,8 @@ export function format (input, { main } = {}) {
   let mainIndex = input.findIndex(entry => main ? entry.id === main : entry._cff_mainReference)
   mainIndex = mainIndex > 0 ? mainIndex : 0
 
-  let mainRef = mainTranslator.convertToSource(input.splice(mainIndex, 1)[0] || {})
-  let references = input.map(refTranslator.convertToSource)
+  const mainRef = mainTranslator.convertToSource(input.splice(mainIndex, 1)[0] || {})
+  const references = input.map(refTranslator.convertToSource)
 
   return { 'cff-version': CFF_VERSION, ...mainRef, references }
 }

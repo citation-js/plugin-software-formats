@@ -7,7 +7,7 @@ import { parse as parseName } from '@citation-js/name'
  * Page: https://developer.github.com/v3/
  */
 
-let propMaps = {
+const propMaps = {
   name: 'title-short',
   full_name: 'title',
   description: 'abstract',
@@ -18,10 +18,11 @@ let propMaps = {
 
 async function parseValue (prop, value) {
   switch (prop) {
-    case 'contributors_url':
+    case 'contributors_url': {
       let contributors = await api(value)
       contributors = await Promise.all(contributors.map(({ url }) => api(url)))
       return contributors.map(({ name, login }) => name ? parseName(name) : { literal: login })
+    }
 
     case 'pushed_at':
       return parseDate(value)
@@ -36,11 +37,11 @@ export const config = {
 }
 
 export async function json (input) {
-  let output = {
+  const output = {
     type: 'book'
   }
 
-  for (let prop in propMaps) {
+  for (const prop in propMaps) {
     if (prop in input) {
       output[propMaps[prop]] = await parseValue(prop, input[prop])
     }
@@ -50,18 +51,18 @@ export async function json (input) {
 }
 
 export async function api (input) {
-  let headers = {
+  const headers = {
     Accept: 'application/vnd.github.v3+json',
     'User-Agent': 'citation.js.org'
   }
 
   if (config.apiToken) { headers.Authorization = `token ${config.apiToken}` }
 
-  let output = await util.fetchFileAsync(input, { headers })
+  const output = await util.fetchFileAsync(input, { headers })
   return JSON.parse(output)
 }
 
 export function url (input) {
-  let [, user, repo] = input.match(/^https?:\/\/github.com\/([^/]+)\/([^/]+)/)
+  const [, user, repo] = input.match(/^https?:\/\/github.com\/([^/]+)\/([^/]+)/)
   return `https://api.github.com/repos/${user}/${repo}`
 }

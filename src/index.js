@@ -38,7 +38,7 @@ plugins.add('@cff', {
   },
   output: {
     cff (data, options = {}) {
-      let output = cff.format(data, options)
+      const output = cff.format(data, options)
       if (options.type === 'object') {
         return output
       } else {
@@ -108,7 +108,7 @@ plugins.add('npm', {
         propertyConstraint: {
           props: 'versions',
           value (versions) {
-            for (let version in versions) {
+            for (const version in versions) {
               if ('_npmUser' in versions[version] ||
                   '_npmVersion' in versions[version]) {
                 return true

@@ -6,7 +6,7 @@ import { parse as parseName } from '@citation-js/name'
  * Format: npm API results
  */
 
-let propMaps = {
+const propMaps = {
   name: 'title',
   description: 'abstract',
   homepage: 'URL',
@@ -24,11 +24,11 @@ async function parseValue (prop, value) {
 }
 
 export async function json (input) {
-  let output = {
+  const output = {
     type: 'book'
   }
 
-  for (let prop in propMaps) {
+  for (const prop in propMaps) {
     if (prop in input) {
       output[propMaps[prop]] = await parseValue(prop, input[prop])
     }
@@ -42,11 +42,11 @@ export async function json (input) {
 }
 
 export async function api (input) {
-  let output = await util.fetchFileAsync(input)
+  const output = await util.fetchFileAsync(input)
   return JSON.parse(output)
 }
 
 export function url (input) {
-  let [, pkg] = input.match(/((@[^/]+\/)?[^/]+)$/)
+  const [, pkg] = input.match(/((@[^/]+\/)?[^/]+)$/)
   return `https://registry.npmjs.org/${pkg}`
 }

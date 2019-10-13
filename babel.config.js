@@ -1,12 +1,8 @@
 module.exports = {
   presets: [
-    ['@babel/env', {targets: {
-      browsers: [
-        '> 1%',
-        'last 10 versions',
-        'ie > 7'
-      ]}
-    }]
+    ['@babel/env', { targets: {
+      node: 6
+    } }]
   ],
   comments: false
 }

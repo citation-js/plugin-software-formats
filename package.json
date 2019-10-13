@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "lint": "standard",
-    "test": "mocha -r @babel/polyfill -r @babel/register test/*.spec.js",
+    "test": "mocha -r @babel/register test/*.spec.js",
     "compile": "babel src -d lib --copy-files",
     "preversion": "npm run lint && npm run test",
     "prepublishOnly": "npm run compile"
@@ -30,7 +30,6 @@
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
-    "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.6.3",
     "@babel/register": "^7.6.2",
     "@citation-js/core": "^0.4.0-rc.1",

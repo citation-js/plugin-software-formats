@@ -3,7 +3,7 @@
 import '../src/'
 
 import assert from 'assert'
-import { Cite, plugins } from '@citation-js/core'
+import { plugins } from '@citation-js/core'
 import { inputTests, outputTests } from './cff'
 
 describe('cff', function () {
@@ -17,7 +17,7 @@ describe('cff', function () {
   describe('output', function () {
     for (const { name, input, output } of outputTests) {
       it(name, function () {
-        assert.deepStrictEqual(Cite(input).format('cff'), output)
+        assert.deepStrictEqual(plugins.output.format('cff', input), output)
       })
     }
   })

@@ -12,7 +12,7 @@ export const apiTests = [
         { family: 'Čermák', given: 'Petr' },
         { family: 'Badger', given: 'The Gitter' }
       ],
-      issued: { 'date-parts': [[2019, 9, 10]] },
+      issued: { 'date-parts': [[2020, 10, 20]] },
       title: 'larsgw/citation.js',
       'title-short': 'citation.js',
       type: 'book'

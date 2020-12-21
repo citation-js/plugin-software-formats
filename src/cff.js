@@ -138,7 +138,13 @@ const PROP_CONVERTERS = {
         return date.raw
       }
       const [year, month, day] = date['date-parts'][0]
-      return new Date(Date.UTC(year, month - 1, day))
+      if (day) {
+        return new Date(Date.UTC(year, month - 1, day))
+      } else if (month) {
+        return new Date(Date.UTC(year, month - 1))
+      } else {
+        return new Date(Date.UTC(year))
+      }
     }
   }
 }

@@ -32,13 +32,13 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/register": "^7.12.10",
-    "@citation-js/core": "^0.5.0-alpha.9",
+    "@citation-js/core": "^0.5.1",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vuln-regex-detector": "^1.0.4",
-    "mocha": "^6.2.1",
-    "standard": "^14.3.1"
+    "mocha": "^8.4.0",
+    "standard": "^16.0.3"
   },
   "peerDependencies": {
-    "@citation-js/core": ">=0.5.0-alpha.4 <0.5.0-beta.0"
+    "@citation-js/core": "^0.5.1"
   }
 }

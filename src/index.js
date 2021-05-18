@@ -84,7 +84,7 @@ plugins.add('@github', {
 })
 
 // npm
-plugins.add('npm', {
+plugins.add('@npm', {
   input: {
     '@npm/url': {
       parseType: {

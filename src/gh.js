@@ -7,6 +7,8 @@ import { parse as parseName } from '@citation-js/name'
  * Page: https://developer.github.com/v3/
  */
 
+let API_TOKEN = null;
+
 const propMaps = {
   name: 'title-short',
   full_name: 'title',
@@ -33,7 +35,9 @@ async function parseValue (prop, value) {
 }
 
 export const config = {
-  apiToken: null
+  setApiToken (token) {
+    API_TOKEN = token
+  }
 }
 
 export async function json (input) {
@@ -56,7 +60,7 @@ export async function api (input) {
     'User-Agent': 'citation.js.org'
   }
 
-  if (config.apiToken) { headers.Authorization = `token ${config.apiToken}` }
+  if (API_TOKEN) { headers.Authorization = `token ${API_TOKEN}` }
 
   const output = await util.fetchFileAsync(input, { headers })
   return JSON.parse(output)

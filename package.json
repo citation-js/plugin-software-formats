@@ -25,7 +25,7 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
-    "@citation-js/date": "^0.4.4",
+    "@citation-js/date": "^0.5.0",
     "@citation-js/name": "^0.4.2",
     "yamljs": "^0.3.0"
   },

@@ -15,7 +15,8 @@ const propMaps = {
   description: 'abstract',
   html_url: 'URL',
   pushed_at: 'issued',
-  contributors_url: 'author'
+  contributors_url: 'author',
+  tags_url: 'version'
 }
 
 async function parseValue (prop, value) {
@@ -24,6 +25,11 @@ async function parseValue (prop, value) {
       let contributors = await api(value)
       contributors = await Promise.all(contributors.map(({ url }) => api(url)))
       return contributors.map(({ name, login }) => name ? parseName(name) : { literal: login })
+    }
+
+    case 'tags_url': {
+      let tags = await api(value)
+      return tags[0].name
     }
 
     case 'pushed_at':
@@ -56,8 +62,7 @@ export async function json (input) {
 
 export async function api (input) {
   const headers = {
-    Accept: 'application/vnd.github.v3+json',
-    'User-Agent': 'citation.js.org'
+    Accept: 'application/vnd.github.v3+json'
   }
 
   if (API_TOKEN) { headers.Authorization = `token ${API_TOKEN}` }

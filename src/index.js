@@ -1,5 +1,5 @@
 import { plugins } from '@citation-js/core'
-import yaml from 'yamljs'
+import yaml from 'js-yaml'
 
 import * as cff from './cff'
 import * as gh from './gh'
@@ -17,7 +17,9 @@ plugins.add('@else', {
           every: false
         }
       },
-      parse: yaml.parse
+      parse (file) {
+        return yaml.load(file, { json: true })
+      }
     }
   }
 })
@@ -42,7 +44,7 @@ plugins.add('@cff', {
       if (options.type === 'object') {
         return output
       } else {
-        return yaml.stringify(output, Infinity, 2)
+        return yaml.dump(output)
       }
     }
   }

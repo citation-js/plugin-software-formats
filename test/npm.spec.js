@@ -5,6 +5,7 @@ import '../src/'
 import assert from 'assert'
 import { plugins } from '@citation-js/core'
 import { apiTests, urlTests } from './npm'
+import './cache/mock'
 
 describe('npm', function () {
   describe('api', function () {

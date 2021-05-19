@@ -37,6 +37,7 @@
     "@citation-js/core": "^0.5.1",
     "babel-eslint": "^10.1.0",
     "conventional-changelog-cli": "^2.1.1",
+    "dotenv": "^9.0.2",
     "eslint-plugin-vuln-regex-detector": "^1.0.4",
     "mocha": "^8.4.0",
     "standard": "^16.0.3"

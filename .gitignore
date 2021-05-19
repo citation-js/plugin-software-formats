@@ -19,5 +19,6 @@ lib/
 .nyc_output/
 coverage.lcov
 
-# not really needed, is it?
+#
 .directory
+.env

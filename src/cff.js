@@ -2,15 +2,13 @@ import { util } from '@citation-js/core'
 import { parse as parseDate } from '@citation-js/date'
 
 /**
- * Format: Citation File Format (CFF) version 1.0.3
- * Supported: CFF-CORE
- * Page: https://citation-file-format.github.io/citation-file-format
- * Spec: https://citation-file-format.github.io/assets/pdf/cff-specifications-1.0.3.pdf
+ * Format: Citation File Format (CFF) version 1.1.0
+ * Spec: https://github.com/citation-file-format/citation-file-format/blob/1.1.0/README.md#specification
  */
 
 const TYPES_TO_TARGET = {
   art: 'graphic',
-  article: 'article',
+  article: 'article-journal', // way more likely
   audiovisual: 'motion_picture',
   bill: 'bill',
   blog: 'post-weblog',
@@ -27,7 +25,7 @@ const TYPES_TO_TARGET = {
   generic: 'book',
   'government-document': 'bill', // 3
   grant: 'bill', // 3
-  hearing: 'interview', // 6
+  hearing: 'interview', // not sure if this belongs, but I did the same for RIS <-> CSL
   'historical-work': 'manuscript', // 5
   'legal-case': 'legal_case',
   'legal-rule': 'legislation',
@@ -43,7 +41,7 @@ const TYPES_TO_TARGET = {
   proceedings: 'paper-conference', // 3
   report: 'report',
   serial: 'post', // 3
-  slides: 'speech', // 7
+  slides: 'speech', // 'presentation' is 'speech' in Zotero <-> CSL
   software: 'book', // 2
   'software-code': 'book', // 2
   'software-container': 'book', // 2
@@ -65,8 +63,6 @@ const TYPES_TO_TARGET = {
 // 4 seems a somewhat more appropiate default than 'book'
 // 5 it says so in the notes in
 //   https://citation-file-format.github.io/1.0.3/specifications/#reference-types
-// 6 not sure if this belongs, but I did the same for RIS <-> CSL
-// 7 'presentation' is 'speech' in Zotero <-> CSL
 
 const TYPES_TO_SOURCE = {
   article: 'article',
@@ -111,7 +107,8 @@ const ENTITY_PROPS = [
   { source: 'given-names', target: 'given' },
   { source: 'name-particle', target: 'non-dropping-particle' },
   { source: 'name-suffix', target: 'suffix' },
-  { source: 'name', target: 'literal' }
+  { source: 'name', target: 'literal' },
+  { source: 'orcid', target: '_orcid' }
 ]
 
 const entity = new util.Translator(ENTITY_PROPS)
@@ -125,9 +122,27 @@ const PROP_CONVERTERS = {
       return names.map(entity.convertToSource)
     }
   },
-  name: {
-    toTarget ({ name }) { return name },
-    toSource (name) { return { name } }
+  publisher: {
+    toTarget ({ name, city, region, country }) {
+      const place = [city, region, country].filter(Boolean).join(', ')
+      return [name, place || undefined]
+    },
+    toSource (name, place) {
+      const entity = { name }
+
+      if (place) {
+        // Parse the following:
+        //   - Country
+        //   - City, Country
+        //   - City, Region, Country
+        const parts = place.split(', ')
+        entity.country = parts.pop()
+        if (parts.length === 2) { entity.region = parts.pop() }
+        if (parts.length === 1) { entity.city = parts.pop() }
+      }
+
+      return entity
+    }
   },
   date: {
     toTarget (date) {
@@ -158,11 +173,61 @@ const MAIN_PROPS = [
 
   // TODO cff: contact
 
-  { source: 'date-released', target: 'issued', convert: PROP_CONVERTERS.date },
+  {
+    source: 'date-released',
+    target: 'issued',
+    when: { target: { type: 'book', version: true } },
+    convert: PROP_CONVERTERS.date
+  },
 
   { source: 'doi', target: 'DOI' },
 
-  'keywords',
+  {
+    source: 'identifiers',
+    target: ['DOI', 'ISBN', 'ISSN', 'PMCID', 'PMID', 'URL'],
+    convert: {
+      toTarget (identifiers) {
+        const newIdentifiers = Array(6).fill(undefined)
+        for (const { type, value } of identifiers) {
+          if (!this.doi && type === 'doi') { newIdentifiers[0] = value }
+          if (!this.url && type === 'url') { newIdentifiers[5] = value }
+          if (type === 'other' && value.startsWith('urn:isbn:')) {
+            newIdentifiers[1] = value.slice(9)
+          }
+          if (type === 'other' && value.startsWith('urn:issn:')) {
+            newIdentifiers[2] = value.slice(9)
+          }
+          if (type === 'other' && value.startsWith('pmcid:')) {
+            newIdentifiers[3] = value.slice(6)
+          }
+          if (type === 'other' && value.startsWith('pmid:')) {
+            newIdentifiers[4] = value.slice(5)
+          }
+        }
+        return newIdentifiers
+      },
+      toSource (doi, isbn, issn, pmcid, pmid, url) {
+        return [
+          doi && { type: 'doi', value: doi },
+          url && { type: 'url', value: url },
+
+          isbn && { type: 'other', value: `urn:isbn:${isbn}` },
+          issn && { type: 'other', value: `urn:issn:${issn}` },
+          pmcid && { type: 'other', value: `pmcid:${pmcid}` },
+          pmid && { type: 'other', value: `pmid:${pmid}` }
+        ].filter(Boolean)
+      }
+    }
+  },
+
+  {
+    source: 'keywords',
+    target: 'keyword',
+    convert: {
+      toTarget (keywords) { return keywords.join(',') },
+      toSource (keywords) { return keywords.split(/,\s*/g) }
+    }
+  },
 
   // TODO cff: license
   // TODO cff: license-url
@@ -173,7 +238,68 @@ const MAIN_PROPS = [
   // TODO cff: repository-code
   // TODO cff: repository-artifact
 
-  'title',
+  {
+    source: 'title',
+    target: 'title',
+    when: {
+      source: { term: false, entry: false },
+      target: {
+        // Everything except entry-*
+        type: [
+          'article',
+          'article-journal',
+          'article-magazine',
+          'article-newspaper',
+          'bill',
+          'book',
+          'broadcast',
+          'chapter',
+          'dataset',
+          'figure',
+          'graphic',
+          'interview',
+          'legal_case',
+          'legislation',
+          'manuscript',
+          'map',
+          'motion_picture',
+          'musical_score',
+          'pamphlet',
+          'paper-conference',
+          'patent',
+          'personal_communication',
+          'post',
+          'post-weblog',
+          'report',
+          'review',
+          'review-book',
+          'song',
+          'speech',
+          'thesis',
+          'treaty',
+          'webpage'
+        ]
+      }
+    }
+  },
+
+  {
+    source: 'title',
+    target: 'container-title',
+    when: {
+      source: { entry: true, journal: false },
+      target: { type: ['entry'] }
+    }
+  },
+
+  {
+    source: 'title',
+    target: 'container-title',
+    when: {
+      source: { term: true, journal: false },
+      target: { type: ['entry-dictionary', 'entry-encyclopedia'] }
+    }
+  },
 
   { source: 'url', target: 'URL' },
 
@@ -190,25 +316,37 @@ const REF_PROPS = [
 
   // COLLECTIONS
   // TODO cff: collection-doi
-  // TODO csl: container-title
-  'collection-title',
   // TODO cff: collection-type
-  // TODO cff: volume-title
-  // TODO cff: issue-title
+  'collection-title',
 
   // COMMUNICATION
   { source: 'recipients', target: 'recipient', convert: PROP_CONVERTERS.names },
-  // TODO cff: senders NOTE name/entity list
+  { source: 'senders', target: 'authors', convert: PROP_CONVERTERS.names },
 
   // CONFERENCE
-  { source: 'conference', target: 'event', convert: PROP_CONVERTERS.name },
+  {
+    source: 'conference',
+    target: ['event', 'event-date', 'event-place'],
+    convert: {
+      toTarget (event) {
+        return [
+          event.name,
+          parseDate(
+            event['date-start'].toISOString(),
+            event['date-end'].toISOString()
+          ),
+          event.location
+        ]
+      }
+    }
+  },
 
   // COPYRIGHT
+  // TODO cff: contact
   // TODO cff: copyright
 
   // DATABASE
-  // TODO cff: data-type
-  // TODO cff: database
+  { source: 'database', target: 'source' },
   // TODO cff: database-provider NOTE entity
 
   // DATE
@@ -225,7 +363,10 @@ const REF_PROPS = [
     source: 'date-published',
     target: 'issued',
     convert: PROP_CONVERTERS.date,
-    when: { source: { 'date-released': false }, target: false }
+    when: {
+      source: { 'date-released': false },
+      target () { return this.type !== 'book' || !this.version }
+    }
   },
 
   {
@@ -253,9 +394,6 @@ const REF_PROPS = [
     }
   },
 
-  // DEPARTMENT
-  // TODO cff: department
-
   // EDITION
   'edition',
 
@@ -264,11 +402,36 @@ const REF_PROPS = [
   { source: 'editors-series', target: 'collection-editor', convert: PROP_CONVERTERS.names },
 
   // ENTRY
-  // TODO cff: entry
+  {
+    source: 'entry',
+    target: 'title',
+    when: {
+      source: { term: false },
+      target: { type: 'entry' }
+    }
+  },
+  {
+    source: 'term',
+    target: 'title',
+    when: {
+      target: { type: ['entry-dictionary', 'entry-encyclopedia'] }
+    }
+  },
 
   // FORMAT
-  // TODO cff: format
+  { source: 'format', target: 'dimensions' },
   'medium',
+
+  // GENRE
+  { source: 'data-type', target: 'genre' },
+  {
+    source: 'thesis-type',
+    target: 'genre',
+    when: {
+      source: { 'data-type': false },
+      target: { type: 'thesis' }
+    }
+  },
 
   // IDENTIFIERS
   { source: 'isbn', target: 'ISBN' },
@@ -276,15 +439,14 @@ const REF_PROPS = [
   // TODO cff: nihmsid
   { source: 'pmcid', target: 'PMCID' },
 
-  // INSTITUTION
-  // TODO cff: institution NOTE entity
-
   // ISSUE
-  'issue', // TODO unsure, target may be 'number' instead
-  // TODO cff: issue-date
+  'issue',
 
   // JOURNAL
-  // TODO cff: journal
+  { source: 'journal', target: 'container-title' },
+  // TODO cff: volume-title
+  // TODO cff: issue-title
+  // TODO cff: issue-date
 
   // LANGUAGE
   {
@@ -303,7 +465,11 @@ const REF_PROPS = [
   },
 
   // LOCATION
-  // TODO cff: location NOTE entity
+  {
+    source: 'location',
+    target: ['archive', 'archive-place'],
+    convert: PROP_CONVERTERS.publisher
+  },
 
   // LOCATION (CODE)
   // TODO cff: filename
@@ -311,17 +477,43 @@ const REF_PROPS = [
   // TODO cff: loc-end
 
   // NOTES
-  { source: 'notes', target: 'note' },
-  // TODO cff: scope *
+  { source: 'notes', target: 'note', when: { source: { scope: false } } },
+  { source: 'scope', target: 'note', when: { target: false } },
 
   // NUMBER
-  'number', // TODO unsure, target may be 'call-number' instead
+  'number',
 
   // PATENT
-  // TODO cff: patent-states
+  {
+    source: 'patent-states',
+    target: 'jurisdiction',
+    // NOTE: CSL jurisdiction can contain more than just US states
+    when: { target: false },
+    convert: { toTarget (states) { return states.join(', ') } }
+  },
 
   // PUBLISHER
-  { source: 'publisher', target: 'publisher', convert: PROP_CONVERTERS.name },
+  {
+    source: ['institution', 'department'],
+    target: ['publisher', 'publisher-place'],
+    when: { source: { publisher: false }, target: { type: 'thesis' } },
+    convert: {
+      toTarget (institution, department) {
+        const [name, place] = PROP_CONVERTERS.publisher.toTarget(institution)
+        return [department ? `${department}, ${name}` : name, place]
+      },
+      toSource (name, place) {
+        return [
+          PROP_CONVERTERS.publisher.toSource(name, place)
+        ]
+      }
+    }
+  },
+  {
+    source: 'publisher',
+    target: ['publisher', 'publisher-place'],
+    convert: PROP_CONVERTERS.publisher
+  },
 
   // SECTION
   'section',
@@ -358,19 +550,21 @@ const REF_PROPS = [
   { source: 'translators', target: 'translator', convert: PROP_CONVERTERS.names },
 
   // TYPES
-  // TODO cff: thesis-type
   {
     source: 'type',
     target: 'type',
     convert: {
       toSource (type) { return TYPES_TO_SOURCE[type] || 'generic' },
-      toTarget (type) { return TYPES_TO_TARGET[type] || 'book' }
+      toTarget (type) {
+        const output = TYPES_TO_TARGET[type] || 'book'
+        return output === 'book' && this.version ? 'software' : output
+      }
     }
   },
 
   // VOLUMES
   'volume',
-  'number-of-volumes'
+  { source: 'number-volumes', target: 'number-of-volumes' }
 ]
 
 const mainTranslator = new util.Translator(MAIN_PROPS)
@@ -386,16 +580,19 @@ export function parse (input) {
   return [output, ...refs]
 }
 
-export function format (input, { main } = {}) {
-  // Bugged in 0.4.0-4, due to the CSL normaliser erroneously removing props
-  // starting with '_', because it checks if the value starts with '_' instead.
+export function format (input, { main, message } = {}) {
   let mainIndex = input.findIndex(entry => main ? entry.id === main : entry._cff_mainReference)
   mainIndex = mainIndex > 0 ? mainIndex : 0
 
   const mainRef = mainTranslator.convertToSource(input.splice(mainIndex, 1)[0] || {})
   const references = input.map(refTranslator.convertToSource)
 
-  return { 'cff-version': CFF_VERSION, ...mainRef, references }
+  return {
+    'cff-version': CFF_VERSION,
+    message: message || 'Please cite the following works when using this software.',
+    ...mainRef,
+    references
+  }
 }
 
-export const CFF_VERSION = '1.0.3'
+export const CFF_VERSION = '1.1.0'

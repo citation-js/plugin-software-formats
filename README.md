@@ -37,7 +37,7 @@ This plugin adds support for [Citation File Format (CFF)](http://citation-file-f
 ```yml
 # Example from https://github.com/citation-file-format/citation-file-format#example
 
-cff-version: 1.0.3
+cff-version: 1.1.0
 message: If you use this software, please cite it as below.
 authors:
   - family-names: Druskat

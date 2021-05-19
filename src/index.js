@@ -30,7 +30,7 @@ plugins.add('@cff', {
         dataType: 'SimpleObject',
         propertyConstraint: {
           props: 'cff-version',
-          value (version) { return version.startsWith('1.0.') }
+          value (version) { return version.startsWith('1.') }
         }
       },
       parse: cff.parse

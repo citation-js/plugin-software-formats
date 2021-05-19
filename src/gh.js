@@ -7,7 +7,7 @@ import { parse as parseName } from '@citation-js/name'
  * Page: https://developer.github.com/v3/
  */
 
-let API_TOKEN = null;
+let API_TOKEN = null
 
 const propMaps = {
   name: 'title-short',
@@ -28,7 +28,7 @@ async function parseValue (prop, value) {
     }
 
     case 'tags_url': {
-      let tags = await api(value)
+      const tags = await api(value)
       return tags[0].name
     }
 

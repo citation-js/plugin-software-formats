@@ -195,7 +195,7 @@ references:
         author: [
           { family: 'Doe', given: 'Jane' },
           { family: 'Bielefeld', given: 'Arthur', 'non-dropping-particle': 'von' },
-          { family: 'McAuthor', given: 'Juniper', suffix: 'Jr.' },
+          { family: 'McAuthor', given: 'Juniper', suffix: 'Jr.' }
         ],
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
@@ -316,7 +316,7 @@ references:
           { family: 'Smith', given: 'Arfon M.' },
           { family: 'Katz', given: 'Daniel S.', _orcid: 'https://orcid.org/0000-0001-5934-7525' },
           { family: 'Niemeyer', given: 'Kyle E.' },
-          { literal: 'FORCE11 Software Citation Working Group' },
+          { literal: 'FORCE11 Software Citation Working Group' }
         ],
         'container-title': 'PeerJ Computer Science',
         DOI: '10.7717/peerj-cs.86',
@@ -372,7 +372,7 @@ references:
         'publisher-place': 'Berlin, DE',
         title: 'Implement a 100% accuracy syntax parser for all languages? No probs!',
         type: 'post-weblog',
-        'URL': 'https://hu-berlin.de/blogs/jdoe/2017/09/23/if-only'
+        URL: 'https://hu-berlin.de/blogs/jdoe/2017/09/23/if-only'
       }
     ]
   },
@@ -838,7 +838,7 @@ references:
         author: [
           { family: 'Doe', given: 'Jane' },
           { family: 'Bielefeld', given: 'Arthur', 'non-dropping-particle': 'von' },
-          { family: 'McAuthor', given: 'Juniper', suffix: 'Jr.' },
+          { family: 'McAuthor', given: 'Juniper', suffix: 'Jr.' }
         ],
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
@@ -969,7 +969,7 @@ references:
           { family: 'Smith', given: 'Arfon M.' },
           { family: 'Katz', given: 'Daniel S.', _orcid: 'https://orcid.org/0000-0001-5934-7525' },
           { family: 'Niemeyer', given: 'Kyle E.' },
-          { literal: 'FORCE11 Software Citation Working Group' },
+          { literal: 'FORCE11 Software Citation Working Group' }
         ],
         'container-title': 'PeerJ Computer Science',
         DOI: '10.7717/peerj-cs.86',
@@ -1034,7 +1034,7 @@ references:
         'publisher-place': 'Berlin, DE',
         title: 'Implement a 100% accuracy syntax parser for all languages? No probs!',
         type: 'post-weblog',
-        'URL': 'https://hu-berlin.de/blogs/jdoe/2017/09/23/if-only'
+        URL: 'https://hu-berlin.de/blogs/jdoe/2017/09/23/if-only'
       }
     ]
   },

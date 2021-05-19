@@ -328,6 +328,22 @@ const REF_PROPS = [
     source: 'conference',
     target: ['event', 'event-date', 'event-place'],
     convert: {
+      toSource (name, date, place) {
+        const entity = { name }
+
+        if (place) { entity.location = place }
+        if (date) {
+          entity['date-start'] = PROP_CONVERTERS.date.toSource(date)
+
+          if (date['date-parts'] && date['date-parts'].length === 2) {
+            entity['date-end'] = PROP_CONVERTERS.date.toSource({
+              'date-parts': [date['date-parts'][1]]
+            })
+          }
+        }
+
+        return entity
+      },
       toTarget (event) {
         return [
           event.name,
@@ -423,7 +439,51 @@ const REF_PROPS = [
   'medium',
 
   // GENRE
-  { source: 'data-type', target: 'genre' },
+  {
+    source: 'data-type',
+    target: 'genre',
+    when: {
+      target: {
+        // Everything except thesis
+        type: [
+          'article',
+          'article-journal',
+          'article-magazine',
+          'article-newspaper',
+          'bill',
+          'book',
+          'broadcast',
+          'chapter',
+          'dataset',
+          'entry',
+          'entry-dictionary',
+          'entry-encyclopedia',
+          'figure',
+          'graphic',
+          'interview',
+          'legal_case',
+          'legislation',
+          'manuscript',
+          'map',
+          'motion_picture',
+          'musical_score',
+          'pamphlet',
+          'paper-conference',
+          'patent',
+          'personal_communication',
+          'post',
+          'post-weblog',
+          'report',
+          'review',
+          'review-book',
+          'song',
+          'speech',
+          'treaty',
+          'webpage'
+        ]
+      }
+    }
+  },
   {
     source: 'thesis-type',
     target: 'genre',
@@ -512,6 +572,47 @@ const REF_PROPS = [
   {
     source: 'publisher',
     target: ['publisher', 'publisher-place'],
+    when: {
+      target: {
+        // Everything except thesis
+        type: [
+          'article',
+          'article-journal',
+          'article-magazine',
+          'article-newspaper',
+          'bill',
+          'book',
+          'broadcast',
+          'chapter',
+          'dataset',
+          'entry',
+          'entry-dictionary',
+          'entry-encyclopedia',
+          'figure',
+          'graphic',
+          'interview',
+          'legal_case',
+          'legislation',
+          'manuscript',
+          'map',
+          'motion_picture',
+          'musical_score',
+          'pamphlet',
+          'paper-conference',
+          'patent',
+          'personal_communication',
+          'post',
+          'post-weblog',
+          'report',
+          'review',
+          'review-book',
+          'song',
+          'speech',
+          'treaty',
+          'webpage'
+        ]
+      }
+    },
     convert: PROP_CONVERTERS.publisher
   },
 
@@ -530,7 +631,7 @@ const REF_PROPS = [
   },
 
   // PAGES
-  { source: 'start', target: 'page-first' },
+  { source: 'start', target: 'page-first', when: { target: { page: false } } },
   {
     source: ['start', 'end'],
     target: 'page',
@@ -585,14 +686,18 @@ export function format (input, { main, message } = {}) {
   mainIndex = mainIndex > 0 ? mainIndex : 0
 
   const mainRef = mainTranslator.convertToSource(input.splice(mainIndex, 1)[0] || {})
-  const references = input.map(refTranslator.convertToSource)
 
-  return {
+  const cff = {
     'cff-version': CFF_VERSION,
     message: message || 'Please cite the following works when using this software.',
-    ...mainRef,
-    references
+    ...mainRef
   }
+
+  if (input.length) {
+    cff.references = input.map(refTranslator.convertToSource)
+  }
+
+  return cff
 }
 
 export const CFF_VERSION = '1.1.0'

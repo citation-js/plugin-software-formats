@@ -119,3 +119,11 @@ Cite(/* ... */).format('cff', {
 
 Alternatively, the entry can have `_cff_mainReference` set to `true`, but that
 is mainly used for round-tripping.
+
+## License
+
+The code and most other contents in this repository is [licensed MIT](LICENSE).
+`test/cache/cache.json` contains data about MIT-licensed repositories and
+packages from GitHub and npm respectively. `test/cff.js` contains [code examples
+from the CFF repository](https://github.com/citation-file-format/citation-file-format/blob/1.1.0/examples.md),
+licensed under [CC-BY-4.0](https://github.com/citation-file-format/citation-file-format/blob/1.1.0/LICENSE).

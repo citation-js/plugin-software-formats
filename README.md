@@ -120,6 +120,19 @@ Cite(/* ... */).format('cff', {
 Alternatively, the entry can have `_cff_mainReference` set to `true`, but that
 is mainly used for round-tripping.
 
+You can also specify the message, a mandatory part of every CFF file. By default,
+the message is:
+
+> Please cite the following works when using this software.
+
+To change it, pass a string to the `message` option when formatting:
+
+```js
+Cite(/* ... */).format('cff', {
+  message: 'If you use this software, please cite it as below.'
+})
+```
+
 ## License
 
 The code and most other contents in this repository is [licensed MIT](LICENSE).

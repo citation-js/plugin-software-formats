@@ -1,3 +1,7 @@
+# [0.5.0](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.0-0...v0.5.0) (2021-05-21)
+
+
+
 # [0.5.0-0](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.4.2...v0.5.0-0) (2021-05-19)
 
 

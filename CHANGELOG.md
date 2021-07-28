@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.0...v0.5.1) (2021-07-28)
+
+
+### Features
+
+* **zenodo:** support .zenodo.json ([8a7e0a2](https://github.com/citation-js/citation.js-plugin-software-formats/commit/8a7e0a297677425c32d3303896a07fe44fcb6483))
+
+
+
 # [0.5.0](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.0-0...v0.5.0) (2021-05-21)
 
 

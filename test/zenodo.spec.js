@@ -4,7 +4,7 @@ import '../src/'
 
 import assert from 'assert'
 import { plugins } from '@citation-js/core'
-import { inputTests, outputTests } from './zenodo'
+import { inputTests } from './zenodo'
 
 describe('zenodo', function () {
   describe('input', function () {
@@ -14,11 +14,4 @@ describe('zenodo', function () {
       })
     }
   })
-  // describe('output', function () {
-  //   for (const { name, input, output } of outputTests) {
-  //     it(name, function () {
-  //       assert.deepStrictEqual(plugins.output.format('.zenodo.json', input), output)
-  //     })
-  //   }
-  // })
 })

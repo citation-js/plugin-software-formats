@@ -221,6 +221,7 @@ const METADATA_PROPS = [
             _affiliation: contributor.affiliation,
             _orcid: contributor.orcid
           })
+          return byType
         }, {})
 
         return [
@@ -231,7 +232,7 @@ const METADATA_PROPS = [
       toSource (editors, producers) {
         return [
           ...editors.map(name => ['Editors', name]),
-          ...producers.map(name => ['Producers', name]),
+          ...producers.map(name => ['Producers', name])
         ].map(([type, name]) => ({
           type,
           name: formatName(name, /* reversed */ true),

@@ -29,7 +29,7 @@ async function parseValue (prop, value) {
 
     case 'tags_url': {
       const tags = await api(value)
-      return tags[0].name
+      return tags.length ? tags[0].name : undefined
     }
 
     case 'pushed_at':

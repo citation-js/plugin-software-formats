@@ -4,6 +4,7 @@ import yaml from 'js-yaml'
 import * as cff from './cff'
 import * as gh from './gh'
 import * as npm from './npm'
+import * as zenodo from './zenodo'
 
 // YAML
 plugins.add('@else', {
@@ -121,6 +122,31 @@ plugins.add('@npm', {
         }
       },
       parseAsync: npm.json
+    }
+  }
+})
+
+// Zenodo
+plugins.add('@zenodo', {
+  input: {
+    '@zenodo/metadata+object': {
+      parseType: {
+        dataType: 'SimpleObject',
+        propertyConstraint: {
+          props: 'upload_type'
+        }
+      },
+      parse: zenodo.parse
+    }
+  },
+  output: {
+    '.zenodo.json' (data, options = {}) {
+      const output = zenodo.format(data)
+      if (options.type === 'object') {
+        return output
+      } else {
+        return JSON.stringify(output, null, 2)
+      }
     }
   }
 })

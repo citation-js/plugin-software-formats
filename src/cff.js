@@ -637,11 +637,11 @@ const REF_PROPS = [
     target: 'page',
     convert: {
       toTarget (start, end) {
-        return `${start}-${end}`
+        return end ? `${start}-${end}` : start
       },
       toSource (page) {
         const [start, end] = page.split('-')
-        return [start, end]
+        return end ? [start, end] : [start]
       }
     }
   },

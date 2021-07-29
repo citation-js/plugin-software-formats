@@ -1,3 +1,13 @@
+## [0.5.2](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.1...v0.5.2) (2021-07-29)
+
+
+### Bug Fixes
+
+* **cff:** drop timestamp of dates in YAML ([97a81c0](https://github.com/citation-js/citation.js-plugin-software-formats/commit/97a81c0c9a9756bfa5a30505202c0b2f3cde163b))
+* **gh:** fix version extractor for tag-less repos ([93fe225](https://github.com/citation-js/citation.js-plugin-software-formats/commit/93fe225ddb219621d8d4a372e55cc509c8e6dec6))
+
+
+
 ## [0.5.1](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.0...v0.5.1) (2021-07-28)
 
 

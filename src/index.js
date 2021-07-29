@@ -1,5 +1,6 @@
 import { plugins } from '@citation-js/core'
 import yaml from 'js-yaml'
+import { CFF_SCHEMA } from './cff-yaml'
 
 import * as cff from './cff'
 import * as gh from './gh'
@@ -45,7 +46,7 @@ plugins.add('@cff', {
       if (options.type === 'object') {
         return output
       } else {
-        return yaml.dump(output)
+        return yaml.dump(output, { schema: CFF_SCHEMA })
       }
     }
   }

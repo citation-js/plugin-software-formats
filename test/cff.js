@@ -649,7 +649,7 @@ message: Please cite the following works when using this software.
 authors:
   - family-names: Druskat
     given-names: Stephan
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -666,7 +666,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -703,7 +703,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 title: My Research Tool Prototype
 version: 0.0.1-alpha1-build1507284872
 `,
@@ -724,7 +724,7 @@ authors:
   - family-names: Vader
     given-names: Anakin "Darth"
     name-suffix: né Skywalker
-date-released: 2017-02-28T00:00:00.000Z
+date-released: 2017-02-28
 identifiers:
   - type: url
     value: http://www.opaquity.com
@@ -750,7 +750,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 title: My Research Tool Kickstarter
 version: 2.0.4
 `,
@@ -771,7 +771,7 @@ authors:
   - name: Humboldt-Universität zu Berlin
   - family-names: Doe
     given-names: Jane
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 identifiers:
   - type: url
     value: https://github.com/doe/docker-brew-mrt/blob/160d54f9e935/iain/Dockerfile
@@ -805,7 +805,7 @@ authors:
   - family-names: McAuthor
     given-names: Juniper
     name-suffix: Jr.
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -824,7 +824,7 @@ references:
       - type: doi
         value: 10.9999/hardscifi-lang.42132
     title: 'My Research Tool: A 100% accuracy syntax parser for all languages'
-    date-published: 2099-01-01T00:00:00.000Z
+    date-published: 2099-01-01
     year: 2099
     issue: '13'
     journal: Journal of Hard Science Fiction
@@ -870,7 +870,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -882,7 +882,7 @@ references:
       - family-names: Picasso
         given-names: Pablo
     title: Guernica
-    date-published: 1937-01-01T00:00:00.000Z
+    date-published: 1937-01-01
     year: 1937
     format: 349.3cm x 776.6cm
     medium: Oil on canvas
@@ -922,7 +922,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -947,7 +947,7 @@ references:
         value: https://doi.org/10.7717/peerj-cs.86
     title: Software citation principles
     url: https://doi.org/10.7717/peerj-cs.86
-    date-published: 2016-01-01T00:00:00.000Z
+    date-published: 2016-01-01
     year: 2016
     issue: e86
     journal: PeerJ Computer Science
@@ -990,7 +990,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -1006,7 +1006,7 @@ references:
         value: https://hu-berlin.de/blogs/jdoe/2017/09/23/if-only
     title: Implement a 100% accuracy syntax parser for all languages? No probs!
     url: https://hu-berlin.de/blogs/jdoe/2017/09/23/if-only
-    date-published: 2017-09-23T00:00:00.000Z
+    date-published: 2017-09-23
     year: 2017
     month: 9
     publisher:
@@ -1046,7 +1046,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -1058,7 +1058,7 @@ references:
       - family-names: Doe
         given-names: Jane
     title: The future of syntax parsing
-    date-published: 2017-01-01T00:00:00.000Z
+    date-published: 2017-01-01
     year: 2017
     medium: print
     publisher:
@@ -1097,7 +1097,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -1117,9 +1117,9 @@ references:
     conference:
       name: 1st Conference on Wishful Thinking
       location: Spock's Inn Hotel and Bar
-      date-start: 2017-04-01T00:00:00.000Z
-      date-end: 2017-04-01T00:00:00.000Z
-    date-published: 2017-01-01T00:00:00.000Z
+      date-start: 2017-04-01
+      date-end: 2017-04-01
+    date-published: 2017-01-01
     year: 2017
     editors:
       - family-names: Kirk
@@ -1166,7 +1166,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -1178,7 +1178,7 @@ references:
       - family-names: Doe
         given-names: Jane
     title: Ultimate-accuracy parsing in practice
-    date-published: 2017-01-01T00:00:00.000Z
+    date-published: 2017-01-01
     year: 2017
     publisher:
       name: Far Out Publications
@@ -1216,7 +1216,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -1231,8 +1231,8 @@ references:
         value: http://www.acme.com/sigs/fp/reports/hpsp.pdf
     title: 100% accuracy syntax parsing at ACME
     url: http://www.acme.com/sigs/fp/reports/hpsp.pdf
-    date-accessed: 2017-09-23T00:00:00.000Z
-    date-published: 2017-01-01T00:00:00.000Z
+    date-accessed: 2017-09-23
+    date-published: 2017-01-01
     year: 2017
     type: report
 `,
@@ -1266,7 +1266,7 @@ authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
-date-released: 2017-12-18T00:00:00.000Z
+date-released: 2017-12-18
 doi: 10.5281/zenodo.1234
 identifiers:
   - type: doi
@@ -1283,8 +1283,8 @@ references:
     title: A high accuracy syntax parser in Visual Basic
     url: http://thesiserver.hu-berlin.de/2017/march/phd/doe-12345
     database: Thesiserver
-    date-accessed: 2017-09-23T00:00:00.000Z
-    date-published: 2017-03-21T00:00:00.000Z
+    date-accessed: 2017-09-23
+    date-published: 2017-03-21
     year: 2017
     month: 3
     thesis-type: PhD

@@ -59,7 +59,7 @@ plugins.add('@github', {
     '@github/url': {
       parseType: {
         dataType: 'String',
-        predicate: /^https?:\/\/github.com\/[^/]+\//,
+        predicate: /^https?:\/\/github\.com\/[^/]+\//,
         extends: '@else/url'
       },
       parse: gh.url
@@ -67,7 +67,7 @@ plugins.add('@github', {
     '@github/api': {
       parseType: {
         dataType: 'String',
-        predicate: /^https?:\/\/api.github.com\/repos\/[^/]+\//,
+        predicate: /^https?:\/\/api\.github\.com\/repos\/[^/]+\//,
         extends: '@else/url'
       },
       parseAsync: gh.api
@@ -78,7 +78,7 @@ plugins.add('@github', {
         propertyConstraint: {
           props: 'url',
           value (url) {
-            return /^https?:\/\/api.github.com\/repos\/[^/]+\//.test(url)
+            return /^https?:\/\/api\.github\.com\/repos\/[^/]+\//.test(url)
           }
         }
       },
@@ -101,7 +101,7 @@ plugins.add('@npm', {
     '@npm/api': {
       parseType: {
         dataType: 'String',
-        predicate: /^https?:\/\/registry.npmjs.org\//,
+        predicate: /^https?:\/\/registry\.npmjs\.org\//,
         extends: '@else/url'
       },
       parseAsync: npm.api

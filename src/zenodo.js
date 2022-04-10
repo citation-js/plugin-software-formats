@@ -5,7 +5,7 @@ import { parse as parseDate, format as formatDate } from '@citation-js/date'
 /**
  * Format: Zenodo Legacy Deposit Schema v1.0.0
  * Spec: https://developers.zenodo.org/#depositions
- * Schema: http://zenodo.org/schemas/deposits/records/legacyjson.json
+ * Schema: https://zenodo.org/schemas/deposits/records/legacyrecord.json
  */
 
 const TYPES_TO_TARGET = {

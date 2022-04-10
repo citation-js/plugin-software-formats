@@ -1,3 +1,13 @@
+## [0.5.3](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.2...v0.5.3) (2022-04-10)
+
+
+### Bug Fixes
+
+* **cff:** do not rely on end of page range to exist ([736a358](https://github.com/citation-js/citation.js-plugin-software-formats/commit/736a358c72e9b8659a34ffb2596af0efe81ce352))
+* escape dots in predicate patterns ([b89bc50](https://github.com/citation-js/citation.js-plugin-software-formats/commit/b89bc50329d9ad0966e7655750a999278bc421ee)), closes [#12](https://github.com/citation-js/citation.js-plugin-software-formats/issues/12)
+
+
+
 ## [0.5.2](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.1...v0.5.2) (2021-07-29)
 
 

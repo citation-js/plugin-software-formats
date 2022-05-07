@@ -37,8 +37,9 @@ This plugin adds support for [Citation File Format (CFF)](http://citation-file-f
 ```yml
 # Example from https://github.com/citation-file-format/citation-file-format#example
 
-cff-version: 1.1.0
+cff-version: 1.2.0
 message: If you use this software, please cite it as below.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -109,7 +110,7 @@ Cite.async('https://www.npmjs.com/package/@citation-js/plugin-software-formats')
 This plugin supports CFF output, both in YAML and in JSON form. If you pass
 multiple references the first counts as the main reference, while the rest
 are added in the `references` list. To specify a different entry as the main
-reference, pass the entry ID in the `main` options:
+reference, pass the entry ID in the `main` option:
 
 ```js
 Cite(/* ... */).format('cff', {
@@ -119,6 +120,10 @@ Cite(/* ... */).format('cff', {
 
 Alternatively, the entry can have `_cff_mainReference` set to `true`, but that
 is mainly used for round-tripping.
+
+To specify the preferred citation, pass the entry ID in the `preferred` option.
+
+To generate CFF `1.1.0` output, pass `'1.1.0'` to the `cffVersion` option.
 
 You can also specify the message, a mandatory part of every CFF file. By default,
 the message is:

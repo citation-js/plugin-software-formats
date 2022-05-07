@@ -2,8 +2,8 @@ import { util } from '@citation-js/core'
 import { parse as parseDate } from '@citation-js/date'
 
 /**
- * Format: Citation File Format (CFF) version 1.1.0
- * Spec: https://github.com/citation-file-format/citation-file-format/blob/1.1.0/README.md#specification
+ * Format: Citation File Format (CFF) version 1.2.0
+ * Spec: https://github.com/citation-file-format/citation-file-format/blob/1.2.0/schema-guide.md
  */
 
 const TYPES_TO_TARGET = {
@@ -164,7 +164,7 @@ const PROP_CONVERTERS = {
   }
 }
 
-const MAIN_PROPS = [
+const SHARED_PROPS = [
   'abstract',
 
   { source: 'authors', target: 'author', convert: PROP_CONVERTERS.names },
@@ -306,9 +306,24 @@ const MAIN_PROPS = [
   'version'
 ]
 
+const MAIN_PROPS = [
+  // TYPES
+  {
+    source: 'type',
+    target: 'type',
+    convert: {
+      toSource (type) { return type === 'dataset' ? 'dataset' : 'software' },
+      toTarget (type) { return type === 'dataset' ? 'dataset' : 'software' }
+    }
+  },
+
+  // Include main mappings
+  ...SHARED_PROPS
+]
+
 const REF_PROPS = [
   // Include main mappings
-  ...MAIN_PROPS,
+  ...SHARED_PROPS,
 
   // ABBREVIATION
   { source: 'abbreviation', target: 'title-short' },
@@ -672,25 +687,51 @@ const mainTranslator = new util.Translator(MAIN_PROPS)
 const refTranslator = new util.Translator(REF_PROPS)
 
 export function parse (input) {
-  const output = mainTranslator.convertToTarget(input)
-  const refs = (input.references || []).map(refTranslator.convertToTarget)
+  const main = mainTranslator.convertToTarget(input)
+  if (input['cff-version'] <= '1.1.0') {
+    main.type = TYPES_TO_TARGET.software
+  }
+  main._cff_mainReference = true
 
-  output.type = TYPES_TO_TARGET.software
-  output._cff_mainReference = true
+  const output = [main]
 
-  return [output, ...refs]
+  if (input['preferred-citation']) {
+    output.push(refTranslator.convertToTarget(input['preferred-citation']))
+  }
+
+  if (Array.isArray(input.references)) {
+    output.push(...input.references.map(refTranslator.convertToTarget))
+  }
+
+  return output
 }
 
-export function format (input, { main, message } = {}) {
+export function format (input, options = {}) {
+  input = input.slice()
+  const {
+    main,
+    preferred,
+    cffVersion = CFF_VERSION,
+    message = 'Please cite the following works when using this software.'
+  } = options
+
+  let preferredCitation
+  const preferredIndex = input.findIndex(entry => preferred && entry.id === preferred)
+  if (cffVersion >= '1.2.0' && preferredIndex > -1) {
+    preferredCitation = refTranslator.convertToSource(...input.splice(preferredIndex, 1))
+  }
+
   let mainIndex = input.findIndex(entry => main ? entry.id === main : entry._cff_mainReference)
-  mainIndex = mainIndex > 0 ? mainIndex : 0
+  mainIndex = mainIndex > -1 ? mainIndex : 0
+  const mainRef = input[mainIndex] ? mainTranslator.convertToSource(...input.splice(mainIndex, 1)) : {}
+  if (mainRef && cffVersion < '1.2.0') {
+    delete mainRef.type
+  }
 
-  const mainRef = mainTranslator.convertToSource(input.splice(mainIndex, 1)[0] || {})
+  const cff = { 'cff-version': cffVersion, message, ...mainRef }
 
-  const cff = {
-    'cff-version': CFF_VERSION,
-    message: message || 'Please cite the following works when using this software.',
-    ...mainRef
+  if (preferredCitation) {
+    cff['preferred-citation'] = preferredCitation
   }
 
   if (input.length) {
@@ -700,4 +741,4 @@ export function format (input, { main, message } = {}) {
   return cff
 }
 
-export const CFF_VERSION = '1.1.0'
+export const CFF_VERSION = '1.2.0'

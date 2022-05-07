@@ -644,8 +644,9 @@ export const outputTests = [
       issued: { 'date-parts': [[2017, 12, 18]] },
       version: '1.0.4'
     }],
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -660,8 +661,9 @@ version: 1.0.4
   },
   {
     name: 'Software with a DOI',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -697,8 +699,9 @@ version: 1.0.4
   },
   {
     name: 'Source code without a DOI',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -718,8 +721,9 @@ version: 0.0.1-alpha1-build1507284872
   },
   {
     name: 'Closed-source software without a DOI',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Vader
     given-names: Anakin "Darth"
@@ -744,8 +748,9 @@ version: opq-1234-XZVF-ACME-RLY
   },
   {
     name: 'An executable',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -765,8 +770,9 @@ version: 2.0.4
   },
   {
     name: 'A software container',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - name: Humboldt-Universität zu Berlin
   - family-names: Doe
@@ -794,8 +800,9 @@ version: 1.0.4 (Iain M. Banks)
   },
   {
     name: 'Software with a further reference',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Doe
     given-names: Jane
@@ -864,8 +871,9 @@ references:
   },
   {
     name: 'art',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -916,8 +924,9 @@ references:
   },
   {
     name: 'article',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -984,8 +993,9 @@ references:
   },
   {
     name: 'blog',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -1040,8 +1050,9 @@ references:
   },
   {
     name: 'book',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -1091,8 +1102,9 @@ references:
   },
   {
     name: 'conference-paper',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -1160,8 +1172,9 @@ references:
   },
   {
     name: 'edited-work',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -1210,8 +1223,9 @@ references:
   },
   {
     name: 'report',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan
@@ -1260,8 +1274,9 @@ references:
   },
   {
     name: 'thesis',
-    output: `cff-version: 1.1.0
+    output: `cff-version: 1.2.0
 message: Please cite the following works when using this software.
+type: software
 authors:
   - family-names: Druskat
     given-names: Stephan

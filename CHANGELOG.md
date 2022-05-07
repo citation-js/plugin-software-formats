@@ -1,3 +1,12 @@
+## [0.5.4](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.3...v0.5.4) (2022-05-07)
+
+
+### Features
+
+* **cff:** update to CFF v1.2.0 ([e4851bc](https://github.com/citation-js/citation.js-plugin-software-formats/commit/e4851bc0fd8a08e2b71e657b859a6484843615c5))
+
+
+
 ## [0.5.3](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.2...v0.5.3) (2022-04-10)
 
 

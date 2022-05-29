@@ -25,7 +25,8 @@ async function parseValue (prop, value) {
 
 export async function json (input) {
   const output = {
-    type: 'book'
+    type: 'software',
+    custom: { versions: [] }
   }
 
   for (const prop in propMaps) {
@@ -36,6 +37,13 @@ export async function json (input) {
     const { latest } = input['dist-tags']
     output.version = latest
     output.issued = parseDate(input.time[latest])
+  }
+
+  for (const version in input.versions) {
+    output.custom.versions.push({
+      version,
+      issued: parseDate(input.time[version])
+    })
   }
 
   return output

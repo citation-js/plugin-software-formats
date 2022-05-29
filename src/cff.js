@@ -8,61 +8,53 @@ import { parse as parseDate } from '@citation-js/date'
 
 const TYPES_TO_TARGET = {
   art: 'graphic',
-  article: 'article-journal', // way more likely
+  article: 'article-journal', // more likely
   audiovisual: 'motion_picture',
   bill: 'bill',
   blog: 'post-weblog',
   book: 'book',
-  catalogue: 'entry', // 1
-  conference: 'paper-conference', // 1
+  catalogue: 'collection',
+  conference: 'event',
   'conference-paper': 'paper-conference',
   data: 'dataset',
-  database: 'dataset', // 1
-  dictionary: 'entry-dictionary', // 1
-  'edited-work': 'book', // 5
-  encyclopedia: 'entry-encyclopedia', // 1
-  'film-broadcast': 'broadcast', // or motion_picture
-  generic: 'book',
-  'government-document': 'bill', // 3
-  grant: 'bill', // 3
-  hearing: 'interview', // not sure if this belongs, but I did the same for RIS <-> CSL
-  'historical-work': 'manuscript', // 5
+  database: 'dataset',
+  dictionary: 'entry-dictionary',
+  'edited-work': 'document', // unmapped
+  encyclopedia: 'entry-encyclopedia',
+  'film-broadcast': 'broadcast',
+  generic: 'document',
+  'government-document': 'regulation',
+  grant: 'document', // unmapped
+  hearing: 'hearing',
+  'historical-work': 'classic',
   'legal-case': 'legal_case',
   'legal-rule': 'legislation',
   'magazine-article': 'article-magazine',
-  manual: 'article', // 4
+  manual: 'report', // substitute presented in the CSL specification
   map: 'map',
-  multimedia: 'motion_picture', // 1
+  multimedia: 'motion_picture',
   music: 'musical_score',
   'newspaper-article': 'article-newspaper',
   pamphlet: 'pamphlet',
   patent: 'patent',
   'personal-communication': 'personal_communication',
-  proceedings: 'paper-conference', // 3
+  proceedings: 'book', // substitute presented in the CSL specification
   report: 'report',
-  serial: 'post', // 3
-  slides: 'speech', // 'presentation' is 'speech' in Zotero <-> CSL
-  software: 'book', // 2
-  'software-code': 'book', // 2
-  'software-container': 'book', // 2
-  'software-executable': 'book', // 2
-  'software-virtual-machine': 'book', // 2
-  'sound-recording': 'song', // 1
-  standard: 'article', // 4
-  statute: 'legislation', // 1
+  serial: 'periodical',
+  slides: 'speech',
+  software: 'software',
+  'software-code': 'software',
+  'software-container': 'software',
+  'software-executable': 'software',
+  'software-virtual-machine': 'software',
+  'sound-recording': 'song',
+  standard: 'standard',
+  statute: 'legislation',
   thesis: 'thesis',
-  unpublished: 'article', // 4
-  video: 'motion_picture', // 1
+  unpublished: 'article',
+  video: 'motion_picture',
   website: 'webpage'
 }
-
-// 1 closest mapping
-// 2 generally accepted substitue. see
-//   https://aurimasv.github.io/z2csl/typeMap.xml#map-computerProgram
-// 3 no idea, but seems alright
-// 4 seems a somewhat more appropiate default than 'book'
-// 5 it says so in the notes in
-//   https://citation-file-format.github.io/1.0.3/specifications/#reference-types
 
 const TYPES_TO_SOURCE = {
   article: 'article',
@@ -72,16 +64,21 @@ const TYPES_TO_SOURCE = {
   bill: 'bill',
   book: 'book',
   broadcast: 'film-broadcast',
-  chapter: 'serial',
+  chapter: 'generic', // unmapped
+  classic: 'historical-work',
+  collection: 'catalogue',
   dataset: 'data',
-  entry: 'catalogue',
+  document: 'generic',
+  entry: 'generic', // unmapped
   'entry-dictionary': 'dictionary',
   'entry-encyclopedia': 'encyclopedia',
-  figure: 'art',
+  event: 'conference',
+  figure: 'generic', // unmapped
   graphic: 'art',
+  hearing: 'hearing',
   interview: 'sound-recording',
   legal_case: 'legal-case',
-  legislation: 'legal-rule',
+  legislation: 'statute',
   manuscript: 'historical-work',
   map: 'map',
   motion_picture: 'film-broadcast',
@@ -89,14 +86,19 @@ const TYPES_TO_SOURCE = {
   pamphlet: 'pamphlet',
   'paper-conference': 'conference-paper',
   patent: 'patent',
+  performance: 'generic', // unmapped
+  periodical: 'serial',
   personal_communication: 'personal-communication',
   post: 'serial',
   'post-weblog': 'blog',
+  regulation: 'government-document',
   report: 'report',
-  review: 'article',
-  'review-book': 'book',
+  review: 'generic', // unmapped
+  'review-book': 'generic', // unmapped
+  software: 'software',
   song: 'sound-recording',
-  speech: 'sound-recording',
+  speech: 'slides',
+  standard: 'standard',
   thesis: 'thesis',
   treaty: 'generic',
   webpage: 'website'
@@ -176,7 +178,7 @@ const SHARED_PROPS = [
   {
     source: 'date-released',
     target: 'issued',
-    when: { target: { type: 'book', version: true } },
+    when: { target: { type: 'software' } },
     convert: PROP_CONVERTERS.date
   },
 
@@ -244,41 +246,9 @@ const SHARED_PROPS = [
     when: {
       source: { term: false, entry: false },
       target: {
-        // Everything except entry-*
-        type: [
-          'article',
-          'article-journal',
-          'article-magazine',
-          'article-newspaper',
-          'bill',
-          'book',
-          'broadcast',
-          'chapter',
-          'dataset',
-          'figure',
-          'graphic',
-          'interview',
-          'legal_case',
-          'legislation',
-          'manuscript',
-          'map',
-          'motion_picture',
-          'musical_score',
-          'pamphlet',
-          'paper-conference',
-          'patent',
-          'personal_communication',
-          'post',
-          'post-weblog',
-          'report',
-          'review',
-          'review-book',
-          'song',
-          'speech',
-          'thesis',
-          'treaty',
-          'webpage'
-        ]
+        type (type) {
+          return !['entry', 'entry-dictionary', 'entry-encyclopedia'].includes(type)
+        }
       }
     }
   },
@@ -341,10 +311,10 @@ const REF_PROPS = [
   // CONFERENCE
   {
     source: 'conference',
-    target: ['event', 'event-date', 'event-place'],
+    target: ['event-title', 'event-date', 'event-place', 'event'],
     convert: {
-      toSource (name, date, place) {
-        const entity = { name }
+      toSource (name, date, place, nameFallback) {
+        const entity = { name: name || nameFallback }
 
         if (place) { entity.location = place }
         if (date) {
@@ -458,45 +428,7 @@ const REF_PROPS = [
     source: 'data-type',
     target: 'genre',
     when: {
-      target: {
-        // Everything except thesis
-        type: [
-          'article',
-          'article-journal',
-          'article-magazine',
-          'article-newspaper',
-          'bill',
-          'book',
-          'broadcast',
-          'chapter',
-          'dataset',
-          'entry',
-          'entry-dictionary',
-          'entry-encyclopedia',
-          'figure',
-          'graphic',
-          'interview',
-          'legal_case',
-          'legislation',
-          'manuscript',
-          'map',
-          'motion_picture',
-          'musical_score',
-          'pamphlet',
-          'paper-conference',
-          'patent',
-          'personal_communication',
-          'post',
-          'post-weblog',
-          'report',
-          'review',
-          'review-book',
-          'song',
-          'speech',
-          'treaty',
-          'webpage'
-        ]
-      }
+      target: { type (type) { return type !== 'thesis' } }
     }
   },
   {
@@ -519,8 +451,15 @@ const REF_PROPS = [
 
   // JOURNAL
   { source: 'journal', target: 'container-title' },
-  // TODO cff: volume-title
-  // TODO cff: issue-title
+  { source: 'volume-title', target: 'volume-title' },
+  {
+    source: 'issue-title',
+    target: 'volume-title',
+    when: {
+      source: { 'volume-title': false },
+      target: false
+    }
+  },
   // TODO cff: issue-date
 
   // LANGUAGE
@@ -588,45 +527,7 @@ const REF_PROPS = [
     source: 'publisher',
     target: ['publisher', 'publisher-place'],
     when: {
-      target: {
-        // Everything except thesis
-        type: [
-          'article',
-          'article-journal',
-          'article-magazine',
-          'article-newspaper',
-          'bill',
-          'book',
-          'broadcast',
-          'chapter',
-          'dataset',
-          'entry',
-          'entry-dictionary',
-          'entry-encyclopedia',
-          'figure',
-          'graphic',
-          'interview',
-          'legal_case',
-          'legislation',
-          'manuscript',
-          'map',
-          'motion_picture',
-          'musical_score',
-          'pamphlet',
-          'paper-conference',
-          'patent',
-          'personal_communication',
-          'post',
-          'post-weblog',
-          'report',
-          'review',
-          'review-book',
-          'song',
-          'speech',
-          'treaty',
-          'webpage'
-        ]
-      }
+      target: { type (type) { return type !== 'thesis' } }
     },
     convert: PROP_CONVERTERS.publisher
   },
@@ -670,10 +571,12 @@ const REF_PROPS = [
     source: 'type',
     target: 'type',
     convert: {
-      toSource (type) { return TYPES_TO_SOURCE[type] || 'generic' },
-      toTarget (type) {
-        const output = TYPES_TO_TARGET[type] || 'book'
-        return output === 'book' && this.version ? 'software' : output
+      toTarget (type) { return TYPES_TO_TARGET[type] || 'document' },
+      toSource (type) {
+        if (type === 'book' && this['event-title']) {
+          return 'proceedings'
+        }
+        return TYPES_TO_SOURCE[type] || 'generic'
       }
     }
   },

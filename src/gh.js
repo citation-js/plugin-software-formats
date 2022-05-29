@@ -15,8 +15,7 @@ const propMaps = {
   description: 'abstract',
   html_url: 'URL',
   pushed_at: 'issued',
-  contributors_url: 'author',
-  tags_url: 'version'
+  contributors_url: 'author'
 }
 
 async function parseValue (prop, value) {
@@ -25,11 +24,6 @@ async function parseValue (prop, value) {
       let contributors = await api(value)
       contributors = await Promise.all(contributors.map(({ url }) => api(url)))
       return contributors.map(({ name, login }) => name ? parseName(name) : { literal: login })
-    }
-
-    case 'tags_url': {
-      const tags = await api(value)
-      return tags.length ? tags[0].name : undefined
     }
 
     case 'pushed_at':
@@ -48,12 +42,23 @@ export const config = {
 
 export async function json (input) {
   const output = {
-    type: 'book'
+    type: 'software'
   }
+
+  const tags = input.tags_url ? await api(input.tags_url) : []
 
   for (const prop in propMaps) {
     if (prop in input) {
       output[propMaps[prop]] = await parseValue(prop, input[prop])
+    }
+  }
+
+  if (tags) {
+    output.version = tags[0].name
+    output.custom = {
+      versions: tags.map(tag => ({
+        version: tag.name
+      }))
     }
   }
 

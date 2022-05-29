@@ -13,11 +13,10 @@ const TYPES_TO_TARGET = {
   presentation: 'speech',
   dataset: 'dataset',
   video: 'motion_picture',
-  // software: 'software',
+  software: 'software',
   // * lesson: Lesson
   // * physicalobject: Physical object
-  // other: 'document'
-  other: 'book'
+  other: 'document'
 
   // Special case: see subtypes
   // * publication: Publication
@@ -32,12 +31,12 @@ const PUBLICATION_TYPES_TO_TARGET = {
   // * datamanagementplan: Data management plan
   article: 'article-journal',
   patent: 'patent',
-  preprint: 'manuscript',
+  preprint: 'article',
   // * deliverable: Project deliverable
   // * milestone: Project milestone
   // * proposal: Proposal
   report: 'report',
-  // * softwaredocumentation: Software documentation
+  softwaredocumentation: 'report', // manual -> report
   // * taxonomictreatment: Taxonomic treatment
   // * technicalnote: Technical note
   thesis: 'thesis',
@@ -63,12 +62,17 @@ const TYPES_TO_SOURCE = {
   book: ['publication', 'book'],
   broadcast: ['video'],
   chapter: ['publication', 'section'],
+  classic: ['publication', 'other'],
+  collection: ['other'],
   dataset: ['dataset'],
+  document: ['other'],
   entry: ['publication', 'other'],
   'entry-dictionary': ['publication', 'other'],
   'entry-encyclopedia': ['publication', 'other'],
+  event: ['other'],
   figure: ['image', 'figure'],
   graphic: ['image', 'other'],
+  hearing: ['publication', 'other'],
   interview: ['publication', 'other'],
   legislation: ['publication', 'other'],
   legal_case: ['publication', 'other'],
@@ -81,12 +85,17 @@ const TYPES_TO_SOURCE = {
   patent: ['publication', 'patent'],
   post: ['publication', 'other'],
   'post-weblog': ['publication', 'other'],
+  performance: ['other'],
+  periodical: ['publication', 'other'],
   personal_communication: ['publication', 'other'],
+  regulation: ['publication', 'other'],
   report: ['publication', 'report'],
   review: ['publication', 'article'],
   'review-book': ['publication', 'article'],
   song: ['video'],
+  software: ['software'],
   speech: ['presentation'],
+  standard: ['publication', 'softwaredocumentation'],
   thesis: ['publication', 'thesis'],
   treaty: ['publication', 'other'],
   webpage: ['publication', 'other']
@@ -259,7 +268,7 @@ const METADATA_PROPS = [
   { source: 'journal_pages', target: 'page', when: WHEN.ARTICLE },
 
   // Conference papers
-  { source: 'conference_title', target: 'event' },
+  { source: 'conference_title', target: 'event-title' },
   { source: 'conference_place', target: 'event-place' },
   {
     source: 'conference_dates',

@@ -17,7 +17,7 @@ date-released: 2017-12-18`,
       title: 'My Research Tool',
       DOI: '10.5281/zenodo.1234',
       issued: { 'date-parts': [[2017, 12, 18]] },
-      type: 'book',
+      type: 'software',
       version: '1.0.4'
     }]
   },
@@ -53,7 +53,7 @@ url: https://sdruskat.github.io/my-research-tool`,
       issued: { 'date-parts': [[2017, 12, 18]] },
       keyword: 'McAuthor\'s algorithm,linguistics,nlp,parser,deep convolutional neural network',
       title: 'My Research Tool',
-      type: 'book',
+      type: 'software',
       URL: 'https://sdruskat.github.io/my-research-tool',
       version: '1.0.4'
     }]
@@ -76,7 +76,7 @@ commit: 160d54f9e935c914df38c1ffda752112b5c979a8`,
       author: [{ family: 'Druskat', given: 'Stephan', _orcid: 'https://orcid.org/0000-0003-4925-7248' }],
       issued: { 'date-parts': [[2017, 12, 18]] },
       title: 'My Research Tool Prototype',
-      type: 'book',
+      type: 'software',
       version: '0.0.1-alpha1-build1507284872'
     }]
   },
@@ -104,7 +104,7 @@ contact:
       author: [{ family: 'Vader', given: 'Anakin "Darth"', suffix: 'né Skywalker' }],
       issued: { 'date-parts': [[2017, 2, 28]] },
       title: 'Opaquity',
-      type: 'book',
+      type: 'software',
       URL: 'http://www.opaquity.com',
       version: 'opq-1234-XZVF-ACME-RLY'
     }]
@@ -126,7 +126,7 @@ repository-artifact: https://hu.berlin/nexus/mrt-kickstarter/2.0.4/mrt2-kickstar
       author: [{ family: 'Druskat', given: 'Stephan', _orcid: 'https://orcid.org/0000-0003-4925-7248' }],
       issued: { 'date-parts': [[2017, 12, 18]] },
       title: 'My Research Tool Kickstarter',
-      type: 'book',
+      type: 'software',
       version: '2.0.4'
     }]
   },
@@ -152,7 +152,7 @@ date-released: 2017-12-18`,
       ],
       issued: { 'date-parts': [[2017, 12, 18]] },
       title: 'mrt-iain-m-banks',
-      type: 'book',
+      type: 'software',
       URL: 'https://github.com/doe/docker-brew-mrt/blob/160d54f9e935/iain/Dockerfile',
       version: '1.0.4 (Iain M. Banks)'
     }]
@@ -200,7 +200,7 @@ references:
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
         title: 'My Research Tool',
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -251,7 +251,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -308,7 +308,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -360,7 +360,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -406,7 +406,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -466,7 +466,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -478,7 +478,7 @@ references:
         editor: [
           { family: 'Kirk', given: 'James T.' }
         ],
-        event: '1st Conference on Wishful Thinking',
+        'event-title': '1st Conference on Wishful Thinking',
         'event-place': 'Spock\'s Inn Hotel and Bar',
         'event-date': { 'date-parts': [[2017, 4, 1], [2017, 4, 1]] },
         issued: { 'date-parts': [[2017]] },
@@ -519,7 +519,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -530,7 +530,7 @@ references:
         publisher: 'Far Out Publications',
         'publisher-place': 'Bielefeld, DE',
         title: 'Ultimate-accuracy parsing in practice',
-        type: 'book'
+        type: 'document'
       }
     ]
   },
@@ -561,7 +561,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -612,7 +612,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -637,7 +637,7 @@ export const outputTests = [
   {
     name: 'simple',
     input: [{
-      type: 'book',
+      type: 'software',
       author: [{ family: 'Druskat', given: 'Stephan' }],
       title: 'My Research Tool',
       DOI: '10.5281/zenodo.1234',
@@ -692,7 +692,7 @@ version: 1.0.4
       issued: { 'date-parts': [[2017, 12, 18]] },
       keyword: 'McAuthor\'s algorithm,linguistics,nlp,parser,deep convolutional neural network',
       title: 'My Research Tool',
-      type: 'book',
+      type: 'software',
       URL: 'https://sdruskat.github.io/my-research-tool',
       version: '1.0.4'
     }]
@@ -715,7 +715,7 @@ version: 0.0.1-alpha1-build1507284872
       author: [{ family: 'Druskat', given: 'Stephan', _orcid: 'https://orcid.org/0000-0003-4925-7248' }],
       issued: { 'date-parts': [[2017, 12, 18]] },
       title: 'My Research Tool Prototype',
-      type: 'book',
+      type: 'software',
       version: '0.0.1-alpha1-build1507284872'
     }]
   },
@@ -741,7 +741,7 @@ version: opq-1234-XZVF-ACME-RLY
       author: [{ family: 'Vader', given: 'Anakin "Darth"', suffix: 'né Skywalker' }],
       issued: { 'date-parts': [[2017, 2, 28]] },
       title: 'Opaquity',
-      type: 'book',
+      type: 'software',
       URL: 'http://www.opaquity.com',
       version: 'opq-1234-XZVF-ACME-RLY'
     }]
@@ -764,7 +764,7 @@ version: 2.0.4
       author: [{ family: 'Druskat', given: 'Stephan', _orcid: 'https://orcid.org/0000-0003-4925-7248' }],
       issued: { 'date-parts': [[2017, 12, 18]] },
       title: 'My Research Tool Kickstarter',
-      type: 'book',
+      type: 'software',
       version: '2.0.4'
     }]
   },
@@ -793,7 +793,7 @@ version: 1.0.4 (Iain M. Banks)
       ],
       issued: { 'date-parts': [[2017, 12, 18]] },
       title: 'mrt-iain-m-banks',
-      type: 'book',
+      type: 'software',
       URL: 'https://github.com/doe/docker-brew-mrt/blob/160d54f9e935/iain/Dockerfile',
       version: '1.0.4 (Iain M. Banks)'
     }]
@@ -850,7 +850,7 @@ references:
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
         title: 'My Research Tool',
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -907,7 +907,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -970,7 +970,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -1032,7 +1032,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -1084,7 +1084,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -1147,7 +1147,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -1206,7 +1206,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -1257,7 +1257,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {
@@ -1316,7 +1316,7 @@ references:
         title: 'My Research Tool',
         DOI: '10.5281/zenodo.1234',
         issued: { 'date-parts': [[2017, 12, 18]] },
-        type: 'book',
+        type: 'software',
         version: '1.0.4'
       },
       {

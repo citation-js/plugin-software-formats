@@ -15,8 +15,42 @@ export const apiTests = [
       issued: { 'date-parts': [[2021, 5, 11]] },
       title: 'larsgw/citation.js',
       'title-short': 'citation.js',
-      type: 'book',
-      version: 'v0.5.1'
+      type: 'software',
+      version: 'v0.5.1',
+      custom: {
+        versions: [
+          { version: 'v0.5.1' },
+          { version: 'v0.5.0' },
+          { version: 'v0.5.0-alpha.10' },
+          { version: 'v0.5.0-alpha.9' },
+          { version: 'v0.5.0-alpha.8' },
+          { version: 'v0.5.0-alpha.7' },
+          { version: 'v0.5.0-alpha.6' },
+          { version: 'v0.5.0-alpha.5' },
+          { version: 'v0.5.0-alpha.4' },
+          { version: 'v0.5.0-alpha.3' },
+          { version: 'v0.5.0-alpha.2' },
+          { version: 'v0.5.0-alpha.0' },
+          { version: 'v0.4.10' },
+          { version: 'v0.4.9' },
+          { version: 'v0.4.8' },
+          { version: 'v0.4.7' },
+          { version: 'v0.4.6' },
+          { version: 'v0.4.5' },
+          { version: 'v0.4.4' },
+          { version: 'v0.4.2' },
+          { version: 'v0.4.1' },
+          { version: 'v0.4.0' },
+          { version: 'v0.4.0-12' },
+          { version: 'v0.4.0-11' },
+          { version: 'v0.4.0-10' },
+          { version: 'v0.4.0-9' },
+          { version: 'v0.4.0-8' },
+          { version: 'v0.4.0-7' },
+          { version: 'v0.4.0-6' },
+          { version: 'v0.4.0-5' }
+        ]
+      }
     }]
   }
 ]

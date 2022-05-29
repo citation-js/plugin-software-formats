@@ -28,7 +28,7 @@ export const inputTests = [
         _affiliation: 'Radboud Universiteit, Nijmegen'
       }],
       title: 'Biodiversity Matcher',
-      type: 'book',
+      type: 'software',
       abstract: 'Match Wikimedia pictures taxonomic groups',
       keyword: 'Wikimedia,iNaturalist,Wikidata'
     }]

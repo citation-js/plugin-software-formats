@@ -35,14 +35,14 @@
     "@babel/eslint-parser": "^7.14.3",
     "@babel/preset-env": "^7.12.11",
     "@babel/register": "^7.12.10",
-    "@citation-js/core": "^0.5.1",
+    "@citation-js/core": "^0.6.0",
     "conventional-changelog-cli": "^2.1.1",
-    "dotenv": "^9.0.2",
+    "dotenv": "^16.0.1",
     "eslint-plugin-vuln-regex-detector": "^1.0.4",
-    "mocha": "^8.4.0",
-    "standard": "^16.0.3"
+    "mocha": "^10.0.0",
+    "standard": "^17.0.0"
   },
   "peerDependencies": {
-    "@citation-js/core": "^0.5.1"
+    "@citation-js/core": "^0.6.0"
   }
 }

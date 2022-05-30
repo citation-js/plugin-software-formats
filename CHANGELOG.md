@@ -1,3 +1,20 @@
+# [0.6.0](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.4...v0.6.0) (2022-05-30)
+
+
+* chore!: raise minimal Node.js version ([8ae033e](https://github.com/citation-js/citation.js-plugin-software-formats/commit/8ae033e5352edf1a6aca20867b9e9d9384b7ad75))
+
+
+### Features
+
+* update mappings to CSL v1.0.2 ([9142eae](https://github.com/citation-js/citation.js-plugin-software-formats/commit/9142eae1bb86adc09e3e0d76e5679c34b582df44))
+
+
+### BREAKING CHANGES
+
+* Use Node.js 14 or higher
+
+
+
 ## [0.5.4](https://github.com/citation-js/citation.js-plugin-software-formats/compare/v0.5.3...v0.5.4) (2022-05-07)
 
 

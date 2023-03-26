@@ -25,12 +25,7 @@
     "test": "mocha -c -R dot -r @babel/register test/*.spec.js"
   },
   "dependencies": {
-    "@citation-js/date": "^0.5.0"
-  },
-  "devDependencies": {
-    "@citation-js/plugin-yaml": "^0.6.0"
-  },
-  "peerDependencies": {
+    "@citation-js/date": "^0.5.0",
     "@citation-js/plugin-yaml": "^0.6.0"
   }
 }

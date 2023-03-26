@@ -19,14 +19,7 @@
     "build": "babel src -d lib --copy-files",
     "test": "mocha -c -R dot -r @babel/register test/*.spec.js"
   },
-  "devDependencies": {
-    "@citation-js/plugin-cff": "^0.6.0",
-    "@citation-js/plugin-github": "^0.6.0",
-    "@citation-js/plugin-npm": "^0.6.0",
-    "@citation-js/plugin-yaml": "^0.6.0",
-    "@citation-js/plugin-zenodo": "^0.6.0"
-  },
-  "peerDependencies": {
+  "dependencies": {
     "@citation-js/plugin-cff": "^0.6.0",
     "@citation-js/plugin-github": "^0.6.0",
     "@citation-js/plugin-npm": "^0.6.0",

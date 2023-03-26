@@ -1,0 +1,30 @@
+{
+  "name": "@citation-js/plugin-yaml",
+  "version": "0.6.0",
+  "description": "Citation.js plugin for YAML files",
+  "keywords": [
+    "Citation.js",
+    "YAML",
+    "software citation"
+  ],
+  "author": "Lars Willighagen",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": "https://github.com/citation-js/plugin-software-formats/packages/plugin-yaml",
+  "bugs": {
+    "url": "https://github.com/citation-js/plugin-software-formats/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "babel src -d lib --copy-files",
+    "test": "true"
+  },
+  "dependencies": {
+    "js-yaml": "^4.0.0"
+  }
+}

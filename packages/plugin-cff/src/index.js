@@ -1,5 +1,7 @@
-import { util } from '@citation-js/core'
+import { plugins, util } from '@citation-js/core'
 import { parse as parseDate } from '@citation-js/date'
+
+import '@citation-js/plugin-yaml'
 
 /**
  * Format: Citation File Format (CFF) version 1.2.0
@@ -588,8 +590,9 @@ const REF_PROPS = [
 
 const mainTranslator = new util.Translator(MAIN_PROPS)
 const refTranslator = new util.Translator(REF_PROPS)
+const CFF_VERSION = '1.2.0'
 
-export function parse (input) {
+function parse (input) {
   const main = mainTranslator.convertToTarget(input)
   if (input['cff-version'] <= '1.1.0') {
     main.type = TYPES_TO_TARGET.software
@@ -609,7 +612,7 @@ export function parse (input) {
   return output
 }
 
-export function format (input, options = {}) {
+function format (input, options = {}) {
   input = input.slice()
   const {
     main,
@@ -644,4 +647,26 @@ export function format (input, options = {}) {
   return cff
 }
 
-export const CFF_VERSION = '1.2.0'
+plugins.add('@cff', {
+  input: {
+    '@cff/object': {
+      parseType: {
+        dataType: 'SimpleObject',
+        propertyConstraint: {
+          props: 'cff-version'
+        }
+      },
+      parse
+    }
+  },
+  output: {
+    cff (data, options = {}) {
+      const output = format(data, options)
+      if (options.type === 'object') {
+        return output
+      } else {
+        return plugins.output.format('yaml', output)
+      }
+    }
+  }
+})

@@ -1,7 +1,7 @@
 import yaml from 'js-yaml'
+import { plugins } from '@citation-js/core'
 
 // See https://github.com/nodeca/js-yaml/issues/569
-
 const timestampTag = 'tag:yaml.org,2002:timestamp'
 const timestamp = yaml.DEFAULT_SCHEMA.compiledTypeMap.scalar[timestampTag]
 
@@ -20,4 +20,25 @@ const CFF_SCHEMA = yaml.DEFAULT_SCHEMA.extend({
   explicit: []
 })
 
-export { CFF_SCHEMA }
+plugins.add('@else', {
+  input: {
+    '@else/yaml': {
+      parseType: {
+        dataType: 'String',
+        tokenList: {
+          split: /\n(\s{2})*(-\s)?/,
+          token: /^[\w-]*: /,
+          every: false
+        }
+      },
+      parse (file) {
+        return yaml.load(file, { json: true })
+      }
+    }
+  },
+  output: {
+    yaml (data) {
+      return yaml.dump(data, { schema: CFF_SCHEMA })
+    }
+  }
+})

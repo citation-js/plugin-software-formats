@@ -1,0 +1,36 @@
+{
+  "name": "@citation-js/plugin-cff",
+  "version": "0.6.0",
+  "description": "Citation.js plugin for the Citation File Format (CFF)",
+  "keywords": [
+    "Citation.js",
+    "CFF",
+    "software citation"
+  ],
+  "author": "Lars Willighagen",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": "https://github.com/citation-js/plugin-software-formats/packages/plugin-cff",
+  "bugs": {
+    "url": "https://github.com/citation-js/plugin-software-formats/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "babel src -d lib --copy-files",
+    "test": "mocha -c -R dot -r @babel/register test/*.spec.js"
+  },
+  "dependencies": {
+    "@citation-js/date": "^0.5.0"
+  },
+  "devDependencies": {
+    "@citation-js/plugin-yaml": "^0.6.0"
+  },
+  "peerDependencies": {
+    "@citation-js/plugin-yaml": "^0.6.0"
+  }
+}

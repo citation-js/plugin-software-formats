@@ -4,10 +4,10 @@ import '../src/'
 
 import assert from 'assert'
 import { plugins } from '@citation-js/core'
-import { apiTests, urlTests } from './npm'
-import './cache/mock'
+import { apiTests, urlTests } from './gh'
+import '../../../test/cache/mock'
 
-describe('npm', function () {
+describe('github', function () {
   describe('api', function () {
     for (const { name, input, output } of apiTests) {
       it(name, async function () {

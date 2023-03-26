@@ -19,8 +19,8 @@ require('../..')
 plugins.config.get('@github').setApiToken(process.env.GITHUB_OAUTH_TOKEN)
 
 require('@babel/register')
-const gh = require('../gh')
-const npm = require('../npm')
+const gh = require('../../packages/plugin-github/test/gh.js')
+const npm = require('../../packages/plugin-npm/test/npm.js')
 
 const tests = [
   ...gh.apiTests,

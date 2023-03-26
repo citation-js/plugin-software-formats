@@ -1,4 +1,4 @@
-import { util } from '@citation-js/core'
+import { plugins, util } from '@citation-js/core'
 import { parse as parseDate } from '@citation-js/date'
 import { parse as parseName } from '@citation-js/name'
 
@@ -23,7 +23,7 @@ async function parseValue (prop, value) {
   }
 }
 
-export async function json (input) {
+async function json (input) {
   const output = {
     type: 'software',
     custom: { versions: [] }
@@ -49,12 +49,51 @@ export async function json (input) {
   return output
 }
 
-export async function api (input) {
+async function api (input) {
   const output = await util.fetchFileAsync(input)
   return JSON.parse(output)
 }
 
-export function url (input) {
+function url (input) {
   const [, pkg] = input.match(/((@[^/]+\/)?[^/]+)$/)
   return `https://registry.npmjs.org/${pkg}`
 }
+
+plugins.add('@npm', {
+  input: {
+    '@npm/url': {
+      parseType: {
+        dataType: 'String',
+        predicate: /^https?:\/\/(www\.)?(npmjs\.com|npmjs\.org|npm\.im)\/(package)?/,
+        extends: '@else/url'
+      },
+      parse: url
+    },
+    '@npm/api': {
+      parseType: {
+        dataType: 'String',
+        predicate: /^https?:\/\/registry\.npmjs\.org\//,
+        extends: '@else/url'
+      },
+      parseAsync: api
+    },
+    '@npm/object': {
+      parseType: {
+        dataType: 'SimpleObject',
+        propertyConstraint: {
+          props: 'versions',
+          value (versions) {
+            for (const version in versions) {
+              if ('_npmUser' in versions[version] ||
+                  '_npmVersion' in versions[version]) {
+                return true
+              }
+            }
+            return false
+          }
+        }
+      },
+      parseAsync: json
+    }
+  }
+})

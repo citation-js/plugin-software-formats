@@ -1,4 +1,4 @@
-import { util } from '@citation-js/core'
+import { plugins, util } from '@citation-js/core'
 import { parse as parseName, format as formatName } from '@citation-js/name'
 import { parse as parseDate, format as formatDate } from '@citation-js/date'
 
@@ -300,14 +300,31 @@ const METADATA_PROPS = [
 
 const metadataTranslator = new util.Translator(METADATA_PROPS)
 
-export function parse (input) {
-  const output = metadataTranslator.convertToTarget(input)
+// Zenodo
+plugins.add('@zenodo', {
+  input: {
+    '@zenodo/metadata+object': {
+      parseType: {
+        dataType: 'SimpleObject',
+        propertyConstraint: {
+          props: 'upload_type'
+        }
+      },
+      parse (input) {
+        const output = metadataTranslator.convertToTarget(input)
 
-  return output
-}
-
-export function format (input) {
-  return metadataTranslator.convertToSource(input)
-}
-
-export const VERSION = '1.0.0'
+        return output
+      }
+    }
+  },
+  output: {
+    '.zenodo.json' (data, options = {}) {
+      const output = metadataTranslator.convertToSource(data)
+      if (options.type === 'object') {
+        return output
+      } else {
+        return JSON.stringify(output, null, 2)
+      }
+    }
+  }
+})

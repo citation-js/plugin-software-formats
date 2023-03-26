@@ -1,34 +1,6 @@
 {
-  "name": "@citation-js/plugin-software-formats",
-  "version": "0.6.0",
-  "description": "Collection of software-related input and output formats for Citation.js",
-  "author": "Lars Willighagen",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/citation-js/citation.js-plugin-software-formats.git"
-  },
-  "main": "lib/index.js",
-  "files": [
-    "/lib"
-  ],
-  "scripts": {
-    "lint": "standard",
-    "test": "mocha -r @babel/register test/*.spec.js",
-    "compile": "babel src -d lib --copy-files",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "preversion": "npm run lint && npm run test",
-    "version": "npm run changelog",
-    "prepublishOnly": "npm run compile"
-  },
-  "standard": {
-    "parser": "@babel/eslint-parser"
-  },
-  "dependencies": {
-    "@citation-js/date": "^0.5.0",
-    "@citation-js/name": "^0.4.2",
-    "js-yaml": "^4.0.0"
-  },
+  "name": "root",
+  "private": true,
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
@@ -39,10 +11,21 @@
     "conventional-changelog-cli": "^2.1.1",
     "dotenv": "^16.0.1",
     "eslint-plugin-vuln-regex-detector": "^1.0.4",
+    "lerna": "^6.6.1",
     "mocha": "^10.0.0",
     "standard": "^17.0.0"
   },
-  "peerDependencies": {
-    "@citation-js/core": "^0.6.0"
-  }
+  "scripts": {
+    "lint": "standard",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "preversion": "npm run lint && npm run test",
+    "version": "npm run changelog",
+    "prepublishOnly": "npm run compile"
+  },
+  "standard": {
+    "parser": "@babel/eslint-parser"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

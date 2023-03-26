@@ -1,0 +1,31 @@
+{
+  "name": "@citation-js/plugin-npm",
+  "version": "0.6.0",
+  "description": "Citation.js plugin for npm packages",
+  "keywords": [
+    "Citation.js",
+    "npm",
+    "software citation"
+  ],
+  "author": "Lars Willighagen",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": "https://github.com/citation-js/plugin-software-formats/packages/plugin-npm",
+  "bugs": {
+    "url": "https://github.com/citation-js/plugin-software-formats/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "babel src -d lib --copy-files",
+    "test": "mocha -c -R dot -r @babel/register test/*.spec.js"
+  },
+  "dependencies": {
+    "@citation-js/date": "^0.5.0",
+    "@citation-js/name": "^0.4.2"
+  }
+}

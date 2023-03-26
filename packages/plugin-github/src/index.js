@@ -1,4 +1,4 @@
-import { util } from '@citation-js/core'
+import { plugins, util } from '@citation-js/core'
 import { parse as parseDate } from '@citation-js/date'
 import { parse as parseName } from '@citation-js/name'
 
@@ -34,13 +34,13 @@ async function parseValue (prop, value) {
   }
 }
 
-export const config = {
+const config = {
   setApiToken (token) {
     API_TOKEN = token
   }
 }
 
-export async function json (input) {
+async function json (input) {
   const output = {
     type: 'software'
   }
@@ -65,7 +65,7 @@ export async function json (input) {
   return output
 }
 
-export async function api (input) {
+async function api (input) {
   const headers = {
     Accept: 'application/vnd.github.v3+json'
   }
@@ -76,7 +76,41 @@ export async function api (input) {
   return JSON.parse(output)
 }
 
-export function url (input) {
+function url (input) {
   const [, user, repo] = input.match(/^https?:\/\/github.com\/([^/]+)\/([^/]+)/)
   return `https://api.github.com/repos/${user}/${repo}`
 }
+
+plugins.add('@github', {
+  config,
+  input: {
+    '@github/url': {
+      parseType: {
+        dataType: 'String',
+        predicate: /^https?:\/\/github\.com\/[^/]+\//,
+        extends: '@else/url'
+      },
+      parse: url
+    },
+    '@github/api': {
+      parseType: {
+        dataType: 'String',
+        predicate: /^https?:\/\/api\.github\.com\/repos\/[^/]+\//,
+        extends: '@else/url'
+      },
+      parseAsync: api
+    },
+    '@github/object': {
+      parseType: {
+        dataType: 'SimpleObject',
+        propertyConstraint: {
+          props: 'url',
+          value (url) {
+            return /^https?:\/\/api\.github\.com\/repos\/[^/]+\//.test(url)
+          }
+        }
+      },
+      parseAsync: json
+    }
+  }
+})

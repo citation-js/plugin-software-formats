@@ -17,6 +17,8 @@
   },
   "scripts": {
     "lint": "standard",
+    "test": "lerna run test",
+    "compile": "lerna run compile",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "preversion": "npm run lint && npm run test",
     "version": "npm run changelog",

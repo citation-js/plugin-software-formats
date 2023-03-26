@@ -18,11 +18,11 @@
   "scripts": {
     "lint": "standard",
     "test": "lerna run test",
-    "compile": "lerna run compile",
+    "build": "lerna run build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "preversion": "npm run lint && npm run test",
     "version": "npm run changelog",
-    "prepublishOnly": "npm run compile"
+    "prepublishOnly": "npm run build"
   },
   "standard": {
     "parser": "@babel/eslint-parser"

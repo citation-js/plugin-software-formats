@@ -5,7 +5,11 @@
   "author": "Lars Willighagen",
   "license": "MIT",
   "main": "lib/index.js",
-  "repository": "https://github.com/citation-js/plugin-software-formats/packages/plugin-software-formats",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/citation-js/plugin-software-formats.git",
+    "directory": "packages/plugin-software-formats"
+  },
   "bugs": {
     "url": "https://github.com/citation-js/plugin-software-formats/issues"
   },

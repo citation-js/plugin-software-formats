@@ -630,6 +630,54 @@ references:
         URL: 'http://thesiserver.hu-berlin.de/2017/march/phd/doe-12345'
       }
     ]
+  },
+  {
+    name: 'https://codeberg.org/michaelkolesidis/javascript-software-synthesizer',
+    input: `# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: JSS-01 | JavaScript Software Synthesizer
+message: 'If you use this software, please cite it as below.'
+type: software
+authors:
+  - given-names: Michael
+    family-names: Kolesidis
+    email: michael.kolesidis@gmail.com
+    orcid: 'https://orcid.org/0000-0002-2662-4677'
+repository: >-
+  https://github.com/michaelkolesidis/javascript-software-synthesizer
+abstract: >-
+  The JSS-01 | JavaScript Software Synthesizer is a
+  software synthesizer enabling users to make, play,
+  and record music in the browser.
+keywords:
+  - synthesizer
+  - software synthesizer
+  - sound synthesis
+  - frequency modulation
+  - FM synthesizer
+  - synth
+  - MIDI
+  - music
+  - sound
+  - sound processing
+  - MIDI keyboard
+license: MIT
+version: 0.5.4
+date-released: '2022-03-22'`,
+    output: [
+      {
+        _cff_mainReference: true,
+        author: [{ family: 'Kolesidis', given: 'Michael', _orcid: 'https://orcid.org/0000-0002-2662-4677' }],
+        title: 'JSS-01 | JavaScript Software Synthesizer',
+        abstract: 'The JSS-01 | JavaScript Software Synthesizer is a software synthesizer enabling users to make, play, and record music in the browser.',
+        keyword: 'synthesizer,software synthesizer,sound synthesis,frequency modulation,FM synthesizer,synth,MIDI,music,sound,sound processing,MIDI keyboard',
+        issued: { 'date-parts': [[2022, 3, 22]] },
+        type: 'software',
+        version: '0.5.4'
+      }
+    ]
   }
 ]
 

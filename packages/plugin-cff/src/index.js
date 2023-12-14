@@ -150,7 +150,10 @@ const PROP_CONVERTERS = {
   },
   date: {
     toTarget (date) {
-      return parseDate(date.toISOString())
+      if (date instanceof Date) {
+        date = date.toISOString()
+      }
+      return parseDate(date)
     },
     toSource (date) {
       if (date.raw) {

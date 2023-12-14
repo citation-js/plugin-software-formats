@@ -1,6 +1,6 @@
 {
   "name": "@citation-js/plugin-zenodo",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Citation.js plugin for Zenodo deposits",
   "keywords": [
     "Citation.js",

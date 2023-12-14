@@ -1,3 +1,12 @@
+# [](https://github.com/citation-js/plugin-software-formats/compare/v0.6.1...v) (2023-12-14)
+
+
+### Bug Fixes
+
+* **cff:** handle string date values ([36c5acd](https://github.com/citation-js/plugin-software-formats/commit/36c5acd7d25156f734b31f0b704b571efe123f9f))
+
+
+
 # [](https://github.com/citation-js/plugin-software-formats/compare/v0.6.0...v) (2023-03-26)
 
 

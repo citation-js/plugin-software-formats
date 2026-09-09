@@ -22,7 +22,7 @@ async function parseValue (prop, value) {
   switch (prop) {
     case 'contributors_url': {
       let contributors = await api(value)
-      contributors = await Promise.all(contributors.map(({ url }) => api(url)))
+      contributors = await Promise.all(contributors.filter(({ type }) => type !== 'Bot').map(({ url }) => api(url)))
       return contributors.map(({ name, login }) => name ? parseName(name) : { literal: login })
     }
 

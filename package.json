@@ -7,19 +7,28 @@
     "@babel/eslint-parser": "^7.14.3",
     "@babel/preset-env": "^7.12.11",
     "@babel/register": "^7.12.10",
-    "@citation-js/core": "^0.6.0",
-    "conventional-changelog-cli": "^2.1.1",
-    "dotenv": "^16.0.1",
+    "@citation-js/core": "^0.8.2",
+    "conventional-changelog": "^7.2.1",
+    "conventional-changelog-angular": "^8.3.1",
+    "dotenv": "^17.4.2",
     "eslint-plugin-vuln-regex-detector": "^1.0.4",
-    "lerna": "^6.6.1",
-    "mocha": "^10.0.0",
+    "lerna": "^9.0.7",
+    "mocha": "^12.0.0",
     "standard": "^17.0.0"
+  },
+  "overrides": {
+    "lerna": {
+      "tar": "7.5.21"
+    },
+    "mocha": {
+      "serialize-javascript": "7.0.5"
+    }
   },
   "scripts": {
     "lint": "standard",
     "test": "lerna run test",
     "build": "lerna run build",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "changelog": "conventional-changelog -p angular && git add CHANGELOG.md",
     "preversion": "npm run lint && npm run test",
     "version": "npm run changelog",
     "prepublishOnly": "npm run build"

@@ -1,3 +1,9 @@
+# [](https://github.com/citation-js/plugin-software-formats/compare/v0.7.0...v) (2026-09-11)
+
+### Bug Fixes
+
+* add missing 'type: module' statements ([4340022](https://github.com/citation-js/plugin-software-formats/commit/43400221ac0b0f2dd9ec86ccf5b432e95040fd0f))
+
 # [](https://github.com/citation-js/plugin-software-formats/compare/v0.6.2...v) (2026-09-11)
 
 ### Bug Fixes

@@ -1,7 +1,7 @@
 {
   "name": "@citation-js/plugin-yaml",
   "type": "module",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Citation.js plugin for YAML files",
   "keywords": [
     "Citation.js",

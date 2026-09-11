@@ -1,3 +1,13 @@
+# [](https://github.com/citation-js/plugin-software-formats/compare/v0.6.2...v) (2026-09-11)
+
+### Bug Fixes
+
+* **plugin-cff:** acount for new version of js-yaml ([070bd48](https://github.com/citation-js/plugin-software-formats/commit/070bd481675ac4e4eb9695c4d7dd1649505da5a6))
+
+### Features
+
+* **github:** remove bots from author list ([3bf8a9d](https://github.com/citation-js/plugin-software-formats/commit/3bf8a9d5e65eb57b4871e400b31a374166303df2))
+
 # [](https://github.com/citation-js/plugin-software-formats/compare/v0.6.1...v) (2023-12-14)
 
 

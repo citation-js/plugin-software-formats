@@ -1,6 +1,6 @@
 {
   "name": "@citation-js/plugin-yaml",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "description": "Citation.js plugin for YAML files",
   "keywords": [
     "Citation.js",

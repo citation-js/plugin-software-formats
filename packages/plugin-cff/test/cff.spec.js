@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 
-import '../src/'
+import '../src/index.js'
 
 import assert from 'assert'
 import { plugins } from '@citation-js/core'
-import { inputTests, outputTests } from './cff'
+import { inputTests, outputTests } from './cff.js'
 
 describe('cff', function () {
   describe('input', function () {

@@ -1,24 +1,20 @@
-import yaml from 'js-yaml'
+import * as yaml from 'js-yaml'
 import { plugins } from '@citation-js/core'
 
 // See https://github.com/nodeca/js-yaml/issues/569
 const timestampTag = 'tag:yaml.org,2002:timestamp'
-const timestamp = yaml.DEFAULT_SCHEMA.compiledTypeMap.scalar[timestampTag]
+const timestamp = yaml.DUMP_SCHEMA.tags.find(tag => tag.tagName === timestampTag)
 
-const date = new yaml.Type(timestampTag, {
-  kind: 'scalar',
+const dateTag = yaml.defineScalarTag(timestampTag, {
+  implicit: true,
   resolve: timestamp.resolve,
-  construct: timestamp.construct,
-  instanceOf: Date,
+  identify: timestamp.identify,
   represent (object) {
     return object.toISOString().split('T')[0]
   }
 })
 
-const CFF_SCHEMA = yaml.DEFAULT_SCHEMA.extend({
-  implicit: [date],
-  explicit: []
-})
+const CFF_SCHEMA = yaml.DUMP_SCHEMA.withTags(dateTag)
 
 plugins.add('@else', {
   input: {

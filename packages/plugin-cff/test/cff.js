@@ -286,9 +286,9 @@ references:
       - family-names: Katz
         given-names: Daniel S.
         affiliation: "National Center for Supercomputing Applications &
-        Electrical and Computer Engineering Department & School of Information
-        Sciences, University of Illinois at Urbana-Champaign, Urbana, Illinois,
-        United States"
+          Electrical and Computer Engineering Department & School of Information
+          Sciences, University of Illinois at Urbana-Champaign, Urbana, Illinois,
+          United States"
         orcid: https://orcid.org/0000-0001-5934-7525
       - family-names: Niemeyer
         given-names: Kyle E.

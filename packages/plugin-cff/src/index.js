@@ -335,14 +335,11 @@ const REF_PROPS = [
         return entity
       },
       toTarget (event) {
-        return [
-          event.name,
-          parseDate(
-            event['date-start'].toISOString(),
-            event['date-end'].toISOString()
-          ),
-          event.location
-        ]
+        const startDate = event['date-start'] instanceof Date ? event['date-start'].toISOString() : event['date-start']
+        const endDate = event['date-end'] instanceof Date ? event['date-end'].toISOString() : event['date-end']
+        const date = startDate && parseDate(startDate, endDate)
+
+        return [event.name, date, event.location]
       }
     }
   },

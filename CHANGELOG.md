@@ -1,3 +1,9 @@
+# [](https://github.com/citation-js/plugin-software-formats/compare/v0.7.1...v) (2026-09-20)
+
+### Features
+
+* add TypeScript types ([7cb8f6e](https://github.com/citation-js/plugin-software-formats/commit/7cb8f6e1472d14eac682b2bb8fc8cbdb0a0b7739))
+
 # [](https://github.com/citation-js/plugin-software-formats/compare/v0.7.0...v) (2026-09-11)
 
 ### Bug Fixes

@@ -1,7 +1,7 @@
 {
   "name": "@citation-js/plugin-software-formats",
   "type": "module",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Collection of software-related input and output formats for Citation.js",
   "author": "Lars Willighagen",
   "license": "MIT",
@@ -27,10 +27,10 @@
     "test": "mocha -c -R dot -r @babel/register test/*.spec.js"
   },
   "dependencies": {
-    "@citation-js/plugin-cff": "^0.7.1",
-    "@citation-js/plugin-github": "^0.7.1",
-    "@citation-js/plugin-npm": "^0.7.1",
-    "@citation-js/plugin-yaml": "^0.7.1",
-    "@citation-js/plugin-zenodo": "^0.7.1"
+    "@citation-js/plugin-cff": "^0.7.2",
+    "@citation-js/plugin-github": "^0.7.2",
+    "@citation-js/plugin-npm": "^0.7.2",
+    "@citation-js/plugin-yaml": "^0.7.2",
+    "@citation-js/plugin-zenodo": "^0.7.2"
   }
 }

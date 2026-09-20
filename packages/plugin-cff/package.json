@@ -1,7 +1,7 @@
 {
   "name": "@citation-js/plugin-cff",
   "type": "module",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Citation.js plugin for the Citation File Format (CFF)",
   "keywords": [
     "Citation.js",
@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "@citation-js/date": "^0.5.0",
-    "@citation-js/plugin-yaml": "^0.7.1"
+    "@citation-js/plugin-yaml": "^0.7.2"
   }
 }

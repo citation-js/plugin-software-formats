@@ -1,7 +1,7 @@
 {
   "name": "@citation-js/plugin-github",
   "type": "module",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Citation.js plugin for GitHub repositories",
   "keywords": [
     "Citation.js",

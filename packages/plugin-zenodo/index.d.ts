@@ -37,7 +37,7 @@ interface Identifier {
 }
 
 interface SchemeIdentifier extends Identifier {
-  scheme:
+  scheme?:
     | 'ads'
     | 'ark'
     | 'arxiv'
@@ -117,7 +117,7 @@ interface Record {
   access_right?: 'open' | 'embargoed' | 'restricted' | 'closed'
   communities?: Identifier[]
   contributors?: Contributor[]
-  creators?: Person[]
+  creators?: Contributor[]
   description?: string
   doi?: string
   embargo_date?: string

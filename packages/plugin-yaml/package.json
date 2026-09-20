@@ -11,6 +11,7 @@
   "author": "Lars Willighagen",
   "license": "MIT",
   "main": "lib/index.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/citation-js/plugin-software-formats.git",
@@ -23,7 +24,8 @@
     "node": ">=22.0.0"
   },
   "files": [
-    "lib"
+    "lib",
+    "index.d.ts"
   ],
   "scripts": {
     "build": "babel src -d lib --copy-files",

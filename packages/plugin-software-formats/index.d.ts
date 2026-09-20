@@ -1,0 +1,5 @@
+import '@citation-js/plugin-cff'
+import '@citation-js/plugin-github'
+import '@citation-js/plugin-npm'
+import '@citation-js/plugin-yaml'
+import '@citation-js/plugin-zenodo'

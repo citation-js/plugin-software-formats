@@ -1,3 +1,9 @@
+# [](https://github.com/citation-js/plugin-software-formats/compare/v0.7.2...v) (2026-10-01)
+
+### Bug Fixes
+
+* **plugin-yaml:** parse dates as expected ([e3b651e](https://github.com/citation-js/plugin-software-formats/commit/e3b651e61f47db27fd46b90a067bc9356175915d))
+
 # [](https://github.com/citation-js/plugin-software-formats/compare/v0.7.1...v) (2026-09-20)
 
 ### Features

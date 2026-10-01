@@ -28,7 +28,7 @@ plugins.add('@else', {
         }
       },
       parse (file) {
-        return yaml.load(file, { json: true })
+        return yaml.load(file, { json: true, schema: CFF_SCHEMA })
       }
     }
   },
